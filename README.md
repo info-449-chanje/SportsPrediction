@@ -16,3 +16,9 @@ An ios app that allows for predicting the outcomes of sporting events and compet
 ## Optional Goals:
  * Create a way to track admin accounts and allow them to manage the leaderboard to maintain site integrity
  * Create a way for users to make groups with other users to compete within
+
+
+### Current API:
+ * Looking into a couple of API options. There doesn't seem to be any that are free without inputting a cc number on Rapid API
+ * TheRundown is 100 calls a day before charge - lots of extra information but SHOULD have live scores
+ * Gold Standard is 100 calls a month before charge - pretty simplified information but less calls a month
