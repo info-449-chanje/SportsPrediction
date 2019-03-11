@@ -19,6 +19,7 @@ An ios app that allows for predicting the outcomes of sporting events and compet
 
 
 ### Current API:
- * Looking into a couple of API options. There doesn't seem to be any that are free without inputting a cc number on Rapid API
- * TheRundown is 100 calls a day before charge - lots of extra information but SHOULD have live scores
- * Gold Standard is 100 calls a month before charge - pretty simplified information but less calls a month
+ * I've decided that the best option for an API for live sports data would be TheRundown on RapidAPI. I've already subscribed to it, so just keep the calls to less than 100/day so I don't get charged, and we get unsubscribed because they can't charge an empty card.      Anyways, if for some reason you need to login, the account I've subscribed to it is:
+ * Email: nhytrek@uw.edu
+ * Password: SportsPredictionApp449
+ * link to api: https://rapidapi.com/therundown/api/therundown
