@@ -19,7 +19,6 @@ An ios app that allows for predicting the outcomes of sporting events and compet
 
 
 ### Current API:
- * I've decided that the best option for an API for live sports data would be TheRundown on RapidAPI. I've already subscribed to it, so just keep the calls to less than 100/day so I don't get charged, and we get unsubscribed because they can't charge an empty card.      Anyways, if for some reason you need to login, the account I've subscribed to it is:
- * Email: nhytrek@uw.edu
- * Password: SportsPredictionApp449
+ * I've decided that the best option for an API for live sports data would be TheRundown on RapidAPI. I've already subscribed to it, so just keep the calls to less than 100/day so I don't get charged, and we get unsubscribed because they can't charge an empty card.      
  * link to api: https://rapidapi.com/therundown/api/therundown
+ * Key is in the view controlller
