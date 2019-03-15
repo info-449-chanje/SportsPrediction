@@ -20,7 +20,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SportsPrediction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcc-RN-W3o">
                                 <rect key="frame" x="50" y="70" width="275" height="46"/>
-                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="29"/>
+                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -49,16 +49,30 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue as Guest if you don't have an account" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOT-S4-zdZ">
-                                <rect key="frame" x="50" y="451" width="275" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or browse Anonymously" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOT-S4-zdZ">
+                                <rect key="frame" x="50" y="511" width="275" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yu-L4-MZq">
-                                <rect key="frame" x="125" y="502" width="125" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yu-L4-MZq">
+                                <rect key="frame" x="125" y="541.5" width="125" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Continue">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Continue as Guest">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign Up!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAG-Zd-0ke">
+                                <rect key="frame" x="50" y="388" width="275" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jef-bm-FIs">
+                                <rect key="frame" x="125" y="419" width="125" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -68,17 +82,24 @@
                             <constraint firstItem="Vcc-RN-W3o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="0Ko-z8-tkH"/>
                             <constraint firstItem="B3H-r1-lfK" firstAttribute="top" secondItem="PLQ-Pt-MnQ" secondAttribute="bottom" constant="10" id="0N7-YS-Q7g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="B3H-r1-lfK" secondAttribute="trailing" constant="100" id="0ZK-Zz-AEF"/>
+                            <constraint firstItem="JAG-Zd-0ke" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="0fL-ab-aNJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9zn-OM-Bwv" secondAttribute="trailing" constant="100" id="22P-sl-BP9"/>
                             <constraint firstItem="PLQ-Pt-MnQ" firstAttribute="top" secondItem="Vcc-RN-W3o" secondAttribute="bottom" constant="60" id="2Cs-AJ-sMh"/>
-                            <constraint firstItem="XOT-S4-zdZ" firstAttribute="top" secondItem="L78-ET-sKt" secondAttribute="bottom" constant="125" id="GLr-2V-P6v"/>
+                            <constraint firstItem="JAG-Zd-0ke" firstAttribute="top" secondItem="L78-ET-sKt" secondAttribute="bottom" constant="62" id="9CS-c1-o7l"/>
+                            <constraint firstItem="XOT-S4-zdZ" firstAttribute="top" secondItem="L78-ET-sKt" secondAttribute="bottom" constant="185" id="GLr-2V-P6v"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vcc-RN-W3o" secondAttribute="bottom" constant="551" id="HFQ-2r-ACz"/>
                             <constraint firstItem="B3H-r1-lfK" firstAttribute="top" secondItem="Vcc-RN-W3o" secondAttribute="bottom" constant="100" id="Ib0-C8-pSV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PLQ-Pt-MnQ" secondAttribute="trailing" constant="50" id="JeF-lF-LfK"/>
                             <constraint firstItem="6yu-L4-MZq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="Oyd-d6-x4m"/>
                             <constraint firstItem="XOT-S4-zdZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="SDI-iX-ba9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jef-bm-FIs" secondAttribute="trailing" constant="125" id="XMo-lq-02Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JAG-Zd-0ke" secondAttribute="trailing" constant="50" id="XtE-TY-pLp"/>
+                            <constraint firstItem="jef-bm-FIs" firstAttribute="top" secondItem="JAG-Zd-0ke" secondAttribute="bottom" constant="10" id="Yv4-ym-qQY"/>
                             <constraint firstItem="Vcc-RN-W3o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="bgw-ns-VYT"/>
                             <constraint firstItem="9zn-OM-Bwv" firstAttribute="top" secondItem="B3H-r1-lfK" secondAttribute="bottom" constant="10" id="dYK-GV-coe"/>
                             <constraint firstItem="9zn-OM-Bwv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="dbB-qX-dxp"/>
+                            <constraint firstItem="XOT-S4-zdZ" firstAttribute="top" secondItem="jef-bm-FIs" secondAttribute="bottom" constant="62" id="el1-mP-IDe"/>
+                            <constraint firstItem="jef-bm-FIs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="f6H-91-v2M"/>
                             <constraint firstItem="B3H-r1-lfK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="l8o-bK-OfY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vcc-RN-W3o" secondAttribute="trailing" constant="50" id="nLR-tU-W4b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L78-ET-sKt" secondAttribute="trailing" constant="125" id="ptT-PS-xbJ"/>

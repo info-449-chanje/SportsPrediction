@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1305D7F9CDE4EAFBD1206993 /* Pods_SportsPrediction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB2D61C3F33E57E62EE739 /* Pods_SportsPrediction.framework */; };
+		9D99D056223B210600D8F5D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */; };
 		9F1FBC48222F720500397180 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FBC47222F720500397180 /* AppDelegate.swift */; };
 		9F1FBC4A222F720500397180 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FBC49222F720500397180 /* ViewController.swift */; };
 		9F1FBC4D222F720500397180 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1FBC4B222F720500397180 /* Main.storyboard */; };
@@ -15,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F1FBC44222F720500397180 /* SportsPrediction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsPrediction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1FBC47222F720500397180 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F1FBC49222F720500397180 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,9 @@
 		9F1FBC4E222F720600397180 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F1FBC51222F720600397180 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F1FBC53222F720600397180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD9BCDA6ECC70BC903233BB5 /* Pods-SportsPrediction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPrediction.release.xcconfig"; path = "Target Support Files/Pods-SportsPrediction/Pods-SportsPrediction.release.xcconfig"; sourceTree = "<group>"; };
+		C4C64390557A876064F237F4 /* Pods-SportsPrediction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPrediction.debug.xcconfig"; path = "Target Support Files/Pods-SportsPrediction/Pods-SportsPrediction.debug.xcconfig"; sourceTree = "<group>"; };
+		CABB2D61C3F33E57E62EE739 /* Pods_SportsPrediction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsPrediction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1305D7F9CDE4EAFBD1206993 /* Pods_SportsPrediction.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		872A8A64E79405A042A004FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CABB2D61C3F33E57E62EE739 /* Pods_SportsPrediction.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9F1FBC3B222F720500397180 = {
 			isa = PBXGroup;
 			children = (
 				9F1FBC46222F720500397180 /* SportsPrediction */,
 				9F1FBC45222F720500397180 /* Products */,
+				B21A69980BAEFE9A474609B7 /* Pods */,
+				872A8A64E79405A042A004FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +77,18 @@
 				9F1FBC4E222F720600397180 /* Assets.xcassets */,
 				9F1FBC50222F720600397180 /* LaunchScreen.storyboard */,
 				9F1FBC53222F720600397180 /* Info.plist */,
+				9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */,
 			);
 			path = SportsPrediction;
+			sourceTree = "<group>";
+		};
+		B21A69980BAEFE9A474609B7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C4C64390557A876064F237F4 /* Pods-SportsPrediction.debug.xcconfig */,
+				AD9BCDA6ECC70BC903233BB5 /* Pods-SportsPrediction.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F1FBC56222F720600397180 /* Build configuration list for PBXNativeTarget "SportsPrediction" */;
 			buildPhases = (
+				0CB9173E81C9AED1715F66A3 /* [CP] Check Pods Manifest.lock */,
 				9F1FBC40222F720500397180 /* Sources */,
 				9F1FBC41222F720500397180 /* Frameworks */,
 				9F1FBC42222F720500397180 /* Resources */,
+				B48B201D36376D9A5050950F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,12 +152,64 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F1FBC52222F720600397180 /* LaunchScreen.storyboard in Resources */,
+				9D99D056223B210600D8F5D3 /* GoogleService-Info.plist in Resources */,
 				9F1FBC4F222F720600397180 /* Assets.xcassets in Resources */,
 				9F1FBC4D222F720500397180 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0CB9173E81C9AED1715F66A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SportsPrediction-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B48B201D36376D9A5050950F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SportsPrediction/Pods-SportsPrediction-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SportsPrediction/Pods-SportsPrediction-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F1FBC40222F720500397180 /* Sources */ = {
@@ -280,6 +361,7 @@
 		};
 		9F1FBC57222F720600397180 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4C64390557A876064F237F4 /* Pods-SportsPrediction.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +379,7 @@
 		};
 		9F1FBC58222F720600397180 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD9BCDA6ECC70BC903233BB5 /* Pods-SportsPrediction.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
