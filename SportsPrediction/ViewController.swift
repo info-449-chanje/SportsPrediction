@@ -9,6 +9,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 struct EventList: Codable{
   let meta: Meta
@@ -123,8 +124,11 @@ class ViewController: UIViewController {
 
   @IBAction func buttonSignIn(_ sender: UIButton) {
       if let user = emailTextfield.text, let pass = passwordTexfield.text {
-          Auth.auth().signIn(withEmail: user, password: pass, completion: { (user, error) in
-              if user != nil {
+          Auth.auth().signIn(withEmail: user, password: pass, completion: { (u, error) in
+              if u != nil {
+                  let ref = Database.database().reference()
+                  //print(user)
+                  //ref.child("users").child("\(user)").setValue(["Streak": 0])
                   self.performSegue(withIdentifier: "LogIn", sender: self)
               }
               else {

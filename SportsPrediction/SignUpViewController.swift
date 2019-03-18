@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
@@ -24,6 +25,10 @@ class SignUpViewController: UIViewController {
         if let user = textfieldEmail.text, let pass = textfieldPassword.text {
             Auth.auth().createUser(withEmail: user, password: pass, completion: { (result, error) in
                 if result != nil {
+                    var emailBeforePeriod = user.split(separator: ".")
+                    let ref = Database.database().reference()
+                    //TODO: Fix this mess
+                    //ref.child("users").setValue([emailBeforePeriod[0]: ["currentStreak": 0], ["recordStreak": 0], ["win": 0], ["loss": 0]])
                     self.performSegue(withIdentifier: "SignUpToSignIn", sender: self)
                 }
                 else {
