@@ -4,7 +4,7 @@ An ios app that allows for predicting the outcomes of sporting events and compet
 ## User Goals:
  * Prediction/Gambling screen
  * History page to view past outcomes of games played
- * Leaderboard to show highscores aongst different users
+ * Leaderboard to show highscores amongst different users
  * Results page to view results of past predictions
  * User page to display user info if desired
  * Graph of data to show the user something based on that data (TBD later)
