@@ -14,6 +14,7 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var textfieldEmail: UITextField!
     @IBOutlet weak var textfieldPassword: UITextField!
+    @IBOutlet weak var labelError: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,8 @@ class SignUpViewController: UIViewController {
                     self.performSegue(withIdentifier: "SignUpToSignIn", sender: self)
                 }
                 else {
-                    print(error!.localizedDescription)
+                    self.labelError.text = error!.localizedDescription
+                    //print(error!.localizedDescription)
                 }
             })
         }

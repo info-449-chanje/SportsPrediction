@@ -9,7 +9,7 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
+
 
 struct EventList: Codable{
   let meta: Meta
@@ -114,6 +114,8 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var emailTextfield: UITextField!
   @IBOutlet weak var passwordTexfield: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
+    
   func failDownloadAlert(){
     let alert = UIAlertController(title: "Download Failed", message: "Please check internet/ data URL/ data format", preferredStyle: UIAlertController.Style.alert)
     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -126,13 +128,11 @@ class ViewController: UIViewController {
       if let user = emailTextfield.text, let pass = passwordTexfield.text {
           Auth.auth().signIn(withEmail: user, password: pass, completion: { (u, error) in
               if u != nil {
-                  let ref = Database.database().reference()
-                  //print(user)
-                  //ref.child("users").child("\(user)").setValue(["Streak": 0])
                   self.performSegue(withIdentifier: "LogIn", sender: self)
               }
               else {
-                  print(error!.localizedDescription)
+                  self.errorLabel.text = error!.localizedDescription
+                  //print(error!.localizedDescription)
               }
           })
       }
