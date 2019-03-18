@@ -77,7 +77,7 @@ class ViewController: UIViewController {
       do{
         let eventList = try JSONDecoder().decode(EventList.self, from: data)
         self.jsonData = eventList
-        print(self.jsonData)
+        print(self.jsonData ?? EventList.self)
       }catch{
         self.failDownloadAlert()
       }
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
 //      }else{
 //        print("Error: \(String(describing: error))")
 //      }   
-    
+      }
     mData.resume()
   }
   
