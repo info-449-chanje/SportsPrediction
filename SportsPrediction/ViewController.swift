@@ -21,13 +21,25 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonSignIn(_ sender: UIButton) {
+        if let user = emailTextfield.text, let pass = passwordTexfield.text {
+            Auth.auth().signIn(withEmail: user, password: pass, completion: { (user, error) in
+                if let u = user {
+                    self.performSegue(withIdentifier: "LogIn", sender: self)
+                }
+                else {
+                    print(error!.localizedDescription)
+                }
+            })
+        }
         
     }
     
     @IBAction func buttonSignUp(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "SignUp", sender: self)
     }
     
     @IBAction func buttonGuest(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "LogIn", sender: self)
     }
 }
 
