@@ -30,7 +30,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell")!;
+        cell.textLabel?.text = eventList[indexPath.row].teams[0].name;
+        return cell;
     }
     
     
