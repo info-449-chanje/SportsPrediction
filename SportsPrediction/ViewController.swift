@@ -49,7 +49,7 @@ struct Meta: Codable{
 class ViewController: UIViewController {
   
   let defaults = UserDefaults.standard
-  var jsonData: EventList? = nil
+  var jsonData: [Event]? = nil
   let dateFormat = "yyyy-MM-DDHH:mm:sszzz"
   
   override func viewDidLoad() {
@@ -77,9 +77,9 @@ class ViewController: UIViewController {
       }
       do{
         let eventList = try JSONDecoder().decode(EventList.self, from: data)
-        self.jsonData = eventList
+        self.jsonData = eventList.events
         self.enumDate(self.jsonData!)
-        print(self.jsonData!.events)
+        print(self.jsonData)
         // print(self.jsonData ?? EventList.self)
       } catch {
         self.failDownloadAlert()
@@ -88,11 +88,11 @@ class ViewController: UIViewController {
     mData.resume()
   }
   
-  func enumDate(_ jsonData: EventList){
+  func enumDate(_ jsonData: [Event]){
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = self.dateFormat
     var i: Int = 0
-    var events = jsonData.events
+    var events = jsonData
     while i < events.count{
       let zindex = events[i].event_date!.firstIndex(of: "Z")!
       var str = "\(events[i].event_date![..<zindex])PDT"
@@ -101,13 +101,13 @@ class ViewController: UIViewController {
       events[i].event_date = str
       i = i + 1
     }
-    self.jsonData!.events = events
+    self.jsonData = events
   }
   
-  func strToDate(_ str: String){
+  func strToDate(_ str: String) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = self.dateFormat
-    return(dateFormatter.date(from: str))
+    return(dateFormatter.date(from: str)!)
   }
   
   
