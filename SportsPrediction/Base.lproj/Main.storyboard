@@ -122,7 +122,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="B3H-r1-lfK" id="LwI-gv-VM5"/>
+                        <outlet property="emailTextfield" destination="B3H-r1-lfK" id="13D-i6-yPM"/>
                         <outlet property="passwordTexfield" destination="9zn-OM-Bwv" id="Hrm-bi-o1i"/>
                         <segue destination="W45-Ck-kig" kind="showDetail" identifier="LogIn" id="BgJ-Tn-ChM"/>
                         <segue destination="2Ce-ne-8dH" kind="showDetail" identifier="SignUp" id="PQR-bd-hEs"/>
@@ -562,7 +562,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b65-m7-fvO"/>
+        <segue reference="BgJ-Tn-ChM"/>
         <segue reference="sIw-5p-NSG"/>
     </inferredMetricsTieBreakers>
 </document>
