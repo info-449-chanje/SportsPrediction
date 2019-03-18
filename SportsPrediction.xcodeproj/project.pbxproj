@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1305D7F9CDE4EAFBD1206993 /* Pods_SportsPrediction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB2D61C3F33E57E62EE739 /* Pods_SportsPrediction.framework */; };
+		70475ADB223F20F700EC3846 /* ProfileGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */; };
 		9D99D056223B210600D8F5D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */; };
 		9DA3D589223F15EF00F57685 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA3D588223F15EF00F57685 /* SignUpViewController.swift */; };
 		9F1FBC48222F720500397180 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FBC47222F720500397180 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGraphViewController.swift; sourceTree = "<group>"; };
 		9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DA3D588223F15EF00F57685 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9F1FBC44222F720500397180 /* SportsPrediction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsPrediction.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				9F1FBC50222F720600397180 /* LaunchScreen.storyboard */,
 				9F1FBC53222F720600397180 /* Info.plist */,
 				9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */,
+				70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */,
 			);
 			path = SportsPrediction;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				9DA3D589223F15EF00F57685 /* SignUpViewController.swift in Sources */,
 				9F1FBC4A222F720500397180 /* ViewController.swift in Sources */,
+				70475ADB223F20F700EC3846 /* ProfileGraphViewController.swift in Sources */,
 				9F1FBC48222F720500397180 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

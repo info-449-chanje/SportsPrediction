@@ -297,10 +297,10 @@
             </objects>
             <point key="canvasLocation" x="1908" y="195"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile Graph View Controller-->
         <scene sceneID="pcp-9s-bh1">
             <objects>
-                <viewController id="xXq-4e-ZtO" sceneMemberID="viewController">
+                <viewController id="xXq-4e-ZtO" customClass="ProfileGraphViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="akY-UK-bDW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -321,6 +321,11 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CF0-jx-1rr" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="67" y="370" width="240" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -335,12 +340,13 @@
                         <viewLayoutGuide key="safeArea" id="px2-Mr-eDQ"/>
                     </view>
                     <connections>
+                        <outlet property="graph" destination="CF0-jx-1rr" id="x1x-pY-tIM"/>
                         <segue destination="Fvl-pC-N6c" kind="showDetail" identifier="GraphToProfile" id="sIw-5p-NSG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF5-f4-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725" y="193"/>
+            <point key="canvasLocation" x="2724" y="192.95352323838082"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dwU-6R-R7M">
@@ -556,7 +562,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hUr-4h-eTo"/>
+        <segue reference="b65-m7-fvO"/>
         <segue reference="sIw-5p-NSG"/>
     </inferredMetricsTieBreakers>
 </document>
