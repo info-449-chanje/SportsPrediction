@@ -151,7 +151,14 @@ class ViewController: UIViewController {
   }
 
   @IBAction func buttonGuest(_ sender: UIButton) {
-      self.performSegue(withIdentifier: "LogIn", sender: self)
+      Auth.auth().signInAnonymously(completion: { (authResult, error) in
+        if authResult != nil {
+            self.performSegue(withIdentifier: "LogIn", sender: self)
+        }
+        else {
+            self.errorLabel.text = error!.localizedDescription
+        }
+      })
   }
 }
 
