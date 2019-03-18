@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="faM-Ka-Wgc">
             <objects>
-                <viewController id="2Ce-ne-8dH" sceneMemberID="viewController">
+                <viewController id="2Ce-ne-8dH" customClass="SignUpViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SDp-Eg-1ap">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,6 +173,9 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonSignup:" destination="2Ce-ne-8dH" eventType="touchUpInside" id="IN3-wN-SLW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdo-9T-6Ex">
                                 <rect key="frame" x="20" y="20" width="65" height="40"/>
@@ -180,6 +183,9 @@
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonBack:" destination="2Ce-ne-8dH" eventType="touchUpInside" id="66P-hI-TRQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -204,6 +210,8 @@
                         <viewLayoutGuide key="safeArea" id="ahM-ta-SPV"/>
                     </view>
                     <connections>
+                        <outlet property="textfieldEmail" destination="p1b-8X-5C7" id="1pO-bR-qkR"/>
+                        <outlet property="textfieldPassword" destination="wp3-Sy-qj1" id="FKl-VJ-3sX"/>
                         <segue destination="W45-Ck-kig" kind="showDetail" identifier="SignUpToEvents" id="FpB-Zu-OxT"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="SignUpToSignIn" id="8Ds-Cg-2HY"/>
                     </connections>

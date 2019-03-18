@@ -124,7 +124,7 @@ class ViewController: UIViewController {
   @IBAction func buttonSignIn(_ sender: UIButton) {
       if let user = emailTextfield.text, let pass = passwordTexfield.text {
           Auth.auth().signIn(withEmail: user, password: pass, completion: { (user, error) in
-              if let u = user {
+              if user != nil {
                   self.performSegue(withIdentifier: "LogIn", sender: self)
               }
               else {
