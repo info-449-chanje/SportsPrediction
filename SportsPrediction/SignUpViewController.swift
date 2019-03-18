@@ -22,12 +22,14 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func buttonSignup(_ sender: UIButton) {
-        if let user = textfieldEmail.text, let pass = textfieldPassword.text {
-            Auth.auth().createUser(withEmail: user, password: pass, completion: { (result, error) in
+        if let email = textfieldEmail.text, let pass = textfieldPassword.text {
+            Auth.auth().createUser(withEmail: email, password: pass, completion: { (result, error) in
                 if result != nil {
-                    var emailBeforePeriod = user.split(separator: ".")
+                    var emailBeforePeriod = email.split(separator: ".")
+                    let user = String(emailBeforePeriod[0])
                     let ref = Database.database().reference()
                     //TODO: Fix this mess
+                    ref.child("users").child(user).setValue(["currentStreak": 0, "recordStreak": 0, "wins": 0, "losses": 0])
                     //ref.child("users").setValue([emailBeforePeriod[0]: ["currentStreak": 0], ["recordStreak": 0], ["win": 0], ["loss": 0]])
                     self.performSegue(withIdentifier: "SignUpToSignIn", sender: self)
                 }
