@@ -249,10 +249,10 @@
             </objects>
             <point key="canvasLocation" x="993" y="507"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="wuf-YC-dhN">
             <objects>
-                <viewController id="Fvl-pC-N6c" sceneMemberID="viewController">
+                <viewController id="Fvl-pC-N6c" customClass="ProfileViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eoM-Fe-nk2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,6 +279,9 @@
                                         <state key="normal" title="Events">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonEvent:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="wXw-Cd-i4O"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oe8-54-Vb0">
                                         <rect key="frame" x="124.5" y="0.0" width="124" height="95"/>
@@ -294,6 +297,9 @@
                                         <state key="normal" title="Leaderboard">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonLeaderboard:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="Jle-ry-E7f"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -357,6 +363,9 @@
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Fvl-pC-N6c" kind="showDetail" identifier="GraphToProfile" id="9ud-zA-Cfv"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CF0-jx-1rr" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="67" y="370" width="240" height="200"/>
@@ -378,7 +387,6 @@
                     </view>
                     <connections>
                         <outlet property="graph" destination="CF0-jx-1rr" id="x1x-pY-tIM"/>
-                        <segue destination="Fvl-pC-N6c" kind="showDetail" identifier="GraphToProfile" id="sIw-5p-NSG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF5-f4-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -433,6 +441,9 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonProfile:" destination="W45-Ck-kig" eventType="touchUpInside" id="hoz-EQ-gPp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxk-jZ-Z10">
                                         <rect key="frame" x="248.5" y="0.0" width="124.5" height="95"/>
@@ -440,6 +451,9 @@
                                         <state key="normal" title="Leaderboard">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonLeaderboard:" destination="W45-Ck-kig" eventType="touchUpInside" id="Yag-n1-CYj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -482,23 +496,14 @@
             </objects>
             <point key="canvasLocation" x="982" y="-167"/>
         </scene>
-        <!--View Controller-->
+        <!--In Progress View Controller-->
         <scene sceneID="V9S-YV-Vkm">
             <objects>
-                <viewController id="Z5U-Wz-0B8" sceneMemberID="viewController">
+                <viewController id="Z5U-Wz-0B8" customClass="InProgressViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FR8-n2-SxY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBn-mf-oXW">
-                                <rect key="frame" x="50" y="70" width="275" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="5ye-QP-6gj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TXV-59-RjH">
                                 <rect key="frame" x="25" y="146" width="325" height="421"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -509,7 +514,19 @@
                                 <state key="normal" title="Back to Events">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonBack:" destination="Z5U-Wz-0B8" eventType="touchUpInside" id="Nod-BC-12q"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBn-mf-oXW">
+                                <rect key="frame" x="50" y="70" width="275" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="5ye-QP-6gj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -528,17 +545,17 @@
                         <viewLayoutGuide key="safeArea" id="kXq-hK-9qN"/>
                     </view>
                     <connections>
-                        <segue destination="W45-Ck-kig" kind="showDetail" identifier="InProgresstoEvent" id="MyM-0c-zPf"/>
+                        <segue destination="W45-Ck-kig" kind="showDetail" identifier="InProgressToEvent" id="MyM-0c-zPf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLV-9h-xuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1908" y="-457"/>
         </scene>
-        <!--View Controller-->
+        <!--Leaderboard View Controller-->
         <scene sceneID="mpe-yR-s4a">
             <objects>
-                <viewController id="DlU-vf-dCI" sceneMemberID="viewController">
+                <viewController id="DlU-vf-dCI" customClass="LeaderboardViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7jZ-4a-GVh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -565,6 +582,9 @@
                                         <state key="normal" title="Events">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonEvent:" destination="DlU-vf-dCI" eventType="touchUpInside" id="F65-Mk-q7c"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqk-hs-YLR">
                                         <rect key="frame" x="124.5" y="0.0" width="124" height="95"/>
@@ -572,6 +592,9 @@
                                         <state key="normal" title="Profile">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonProfile:" destination="DlU-vf-dCI" eventType="touchUpInside" id="4I7-KM-sCR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSc-FG-dgX">
                                         <rect key="frame" x="248.5" y="0.0" width="124.5" height="95"/>
@@ -610,9 +633,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BgJ-Tn-ChM"/>
-        <segue reference="FO9-tD-GUw"/>
         <segue reference="MyM-0c-zPf"/>
-        <segue reference="yiT-Hc-xKY"/>
+        <segue reference="clA-SL-zPG"/>
     </inferredMetricsTieBreakers>
 </document>
