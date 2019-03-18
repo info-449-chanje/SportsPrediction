@@ -12,13 +12,13 @@ import FirebaseAuth
 
 struct EventList: Codable{
   let meta: Meta
-  let events: [Event]
+  var events: [Event]
 }
 
 struct Event: Codable{
   let event_id: String
   let sport_id: Int
-  let event_date: String
+  var event_date: String?
   let rotation_number_away: Int
   let rotation_number_home: Int
   let teams: [Team]
@@ -50,6 +50,7 @@ class ViewController: UIViewController {
   
   let defaults = UserDefaults.standard
   var jsonData: EventList? = nil
+  let dateFormat = "yyyy-MM-DDHH:mm:sszzz"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -77,19 +78,38 @@ class ViewController: UIViewController {
       do{
         let eventList = try JSONDecoder().decode(EventList.self, from: data)
         self.jsonData = eventList
-        print(self.jsonData ?? EventList.self)
-      }catch{
+        self.enumDate(self.jsonData!)
+        print(self.jsonData!.events)
+        // print(self.jsonData ?? EventList.self)
+      } catch {
         self.failDownloadAlert()
       }
-//      if let res = response as? HTTPURLResponse {
-//        print("res: \(String(describing: res))")
-//        print("data: \(String(describing: data))")
-//      }else{
-//        print("Error: \(String(describing: error))")
-//      }   
-      }
+    }
     mData.resume()
   }
+  
+  func enumDate(_ jsonData: EventList){
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = self.dateFormat
+    var i: Int = 0
+    var events = jsonData.events
+    while i < events.count{
+      let zindex = events[i].event_date!.firstIndex(of: "Z")!
+      var str = "\(events[i].event_date![..<zindex])PDT"
+      let tindex = str.firstIndex(of: "T")!
+      str.remove(at: tindex)
+      events[i].event_date = str
+      i = i + 1
+    }
+    self.jsonData!.events = events
+  }
+  
+  func strToDate(_ str: String){
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = self.dateFormat
+    return(dateFormatter.date(from: str))
+  }
+  
   
   @IBOutlet weak var emailTextfield: UITextField!
   @IBOutlet weak var passwordTexfield: UITextField!
