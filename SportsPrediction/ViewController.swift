@@ -14,11 +14,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTexfield: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    @IBAction func buttonSignIn(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func buttonSignUp(_ sender: UIButton) {
+    }
+    
+    @IBAction func buttonGuest(_ sender: UIButton) {
+    }
 }
 
