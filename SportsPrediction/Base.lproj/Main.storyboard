@@ -610,12 +610,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
         <segue reference="BgJ-Tn-ChM"/>
-=======
         <segue reference="FO9-tD-GUw"/>
         <segue reference="MyM-0c-zPf"/>
->>>>>>> master
         <segue reference="yiT-Hc-xKY"/>
     </inferredMetricsTieBreakers>
 </document>
