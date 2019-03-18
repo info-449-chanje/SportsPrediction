@@ -8,5 +8,6 @@ target 'SportsPrediction' do
   # Pods for SportsPrediction
 pod 'Firebase/Core'
 pod 'Firebase/Database'
+pod 'Firebase/Auth'
 
 end
