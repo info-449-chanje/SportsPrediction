@@ -7,24 +7,40 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var textfieldEmail: UITextField!
+    @IBOutlet weak var textfieldPassword: UITextField!
+    @IBOutlet weak var labelError: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func buttonSignup(_ sender: UIButton) {
+        if let email = textfieldEmail.text, let pass = textfieldPassword.text {
+            Auth.auth().createUser(withEmail: email, password: pass, completion: { (result, error) in
+                if result != nil {
+                    var emailBeforePeriod = email.split(separator: ".")
+                    let user = String(emailBeforePeriod[0])
+                    let ref = Database.database().reference()
+                    ref.child("users").child(user).setValue(["currentStreak": 0, "recordStreak": 0, "wins": 0, "losses": 0])
+                    self.performSegue(withIdentifier: "SignUpToSignIn", sender: self)
+                }
+                else {
+                    self.labelError.text = error!.localizedDescription
+                    //print(error!.localizedDescription)
+                }
+            })
+        }
     }
-    */
-
+    
+    @IBAction func buttonBack(_ sender: Any) {
+        self.performSegue(withIdentifier: "SignUpToSignIn", sender: self)
+    }
 }
