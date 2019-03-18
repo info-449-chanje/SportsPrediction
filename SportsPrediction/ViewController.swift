@@ -138,6 +138,13 @@ class ViewController: UIViewController {
       }
 
   }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "LogIn") {
+             let eventViewController = segue.destination as! EventViewController
+            eventViewController.eventList = self.jsonData!;
+        }
+    }
 
   @IBAction func buttonSignUp(_ sender: UIButton) {
       self.performSegue(withIdentifier: "SignUp", sender: self)
