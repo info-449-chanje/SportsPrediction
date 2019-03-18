@@ -14,11 +14,52 @@ class ProfileGraphViewController: UIViewController {
   @IBOutlet weak var graph: PieChartView!
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  var qRight = PieChartDataEntry(value:0)
+  var qWrong = PieChartDataEntry(value:0)
+  
+  
+  var qTries = [PieChartDataEntry]()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
+    // Do any additional setup after loading the view.
+    self.title = "Your picks"
+    graph.chartDescription?.text = ""
+    
+    qRight.value = r
+    qRight.label = "Correct picks"
+    
+    qWrong.value = w
+    qWrong.label = "Incorrect picks"
+    
+    qTries = [qRight, qWrong]
+    
+    updateChartData()
+    
+  }
+  
+  func changeRight() {
+    
+  }
+  
+  func changeWrong() {
+    
+  }
+  
+  
+  func updateChartData() {
+    
+    let chartDataSet = PieChartDataSet(values: qTries, label: nil)
+    let chartData = PieChartData(dataSet: chartDataSet)
+    
+    let colors = [UIColor(named:"success"), UIColor(named:"failure")]
+    chartDataSet.colors = colors as! [NSUIColor]
+    
+    graph.data = chartData
+
+
+  }
     
 
     /*
