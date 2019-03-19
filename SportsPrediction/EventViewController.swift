@@ -14,10 +14,16 @@ struct Pick {
     var event: Event
 }
 
+struct Games {
+    var sectionName: String
+    var sectionObjects: [Event]
+}
+
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var eventList: [Event] = [];
     var picks: [Pick] = [];
+    var gameArray: [Games] = [];
     let dateFormat = "yyyy-MM-DDHH:mm:sszzz"
     
     @IBOutlet weak var EventTableView: UITableView!
@@ -30,19 +36,53 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/6/events?", sportId: "6")
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/3/events?", sportId: "3")
         }
+        fillEvents();
         EventTableView.dataSource = self;
         EventTableView.delegate = self;
+        
         //print(self.eventList)
     }
     
+    func fillEvents() {
+        var nbaGames: [Event] = [];
+        var nflGames: [Event] = [];
+        var nhlGames: [Event] = [];
+        var mlbGames: [Event] = [];
+        for (event) in self.eventList {
+            if (event.sport_id == 2) {
+                nflGames.append(event);
+            } else if (event.sport_id == 4) {
+                nbaGames.append(event);
+            } else if (event.sport_id == 6) {
+                nhlGames.append(event);
+            } else {
+                mlbGames.append(event);
+            }
+        }
+        gameArray.append(Games(sectionName: "NBA", sectionObjects: nbaGames))
+        gameArray.append(Games(sectionName: "NFL", sectionObjects: nflGames));
+        gameArray.append(Games(sectionName: "NHL", sectionObjects: nhlGames))
+        gameArray.append(Games(sectionName: "MLB", sectionObjects: mlbGames))
+
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return gameArray.count;
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventList.count;
+        return gameArray[section].sectionObjects.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell")!;
-        cell.textLabel?.text = eventList[indexPath.row].teams[0].name + " vs. " + eventList[indexPath.row].teams[1].name ;
+        cell.textLabel?.text = gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name + " vs. " + gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name
+//        cell.textLabel?.text = eventList[indexPath.row].teams[0].name + " vs. " + eventList[indexPath.row].teams[1].name;
         return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return gameArray[section].sectionName;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
