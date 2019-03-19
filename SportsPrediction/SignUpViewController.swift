@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController {
         if let email = textfieldEmail.text, let pass = textfieldPassword.text {
             Auth.auth().createUser(withEmail: email, password: pass, completion: { (result, error) in
                 if result != nil {
-                    var emailBeforePeriod = email.split(separator: ".")
+                    var emailBeforePeriod = email.split(separator: "@")
                     let user = String(emailBeforePeriod[0])
                     let ref = Database.database().reference()
                     ref.child("users").child(user).setValue(["currentStreak": 0, "recordStreak": 0, "wins": 0, "losses": 0])
