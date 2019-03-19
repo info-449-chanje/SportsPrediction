@@ -28,40 +28,30 @@ class ProfileGraphViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    self.title = "Your picks"
-    //    graph.chartDescription?.text = ""
     
-    //    qRight.value = r
-    qRight.label = "Correct picks"
-    
-    //    qWrong.value = w
-    qWrong.label = "Incorrect picks"
-    
-    qTries = [qRight, qWrong]
-    
-    //    updateChartData()
+    makePie()
     
     
+    
+    
+    
+  }
+  
+  func makePie() {
     
     let email = Auth.auth().currentUser?.email!
-    var emailBeforePeriod = email?.split(separator: "@")
+    let emailBeforePeriod = email?.split(separator: "@")
     let name = String((emailBeforePeriod?[0])!)
     print(name)
     
-    var ref = Database.database().reference().child("users").child(name) //child("sam")
-    //    ref.observe
+    let ref = Database.database().reference().child("users").child(name) //child("sam")   child(name)
     
-    
-    //observing the data changes
     ref.observe(DataEventType.value, with: { (snapshot) in
       
       //if the reference have some values
       if snapshot.childrenCount > 0 {
         
         
-        //        iterating through all the values
-        //        for attr in snapshot.children.allObjects as! [DataSnapshot] {
-        //        getting values
         let attrObject = snapshot.value as? [String: AnyObject]
         print(Double(self.chop(s: "\(attrObject?["wins"])")) ?? 0.0)
         
@@ -69,64 +59,71 @@ class ProfileGraphViewController: UIViewController {
         
         let qWin = Double(self.chop(s: "\(attrObject?["wins"])")) ?? 0.0
         let qLoss = Double(self.chop(s: "\(attrObject?["losses"])")) ?? 0.0
-//
-        self.qTries = [PieChartDataEntry(value: qWin), PieChartDataEntry(value: qLoss)]
+        
+        let winEntry = PieChartDataEntry(value: qWin)
+        let lossEntry = PieChartDataEntry(value: qLoss)
+        
+        winEntry.label = "Correct picks"
+        lossEntry.label = "Incorrect picks"
+        
+        self.qTries = [winEntry, lossEntry]
         
         
-//        self.myarray.append("Wins: " + self.chop(s: "\(attrObject?["wins"])"))
-//        self.myarray.append("Losses: " + self.chop(s: "\(attrObject?["losses"])"))
-//        self.myarray.append("Current Streak: " + self.chop(s: "\(attrObject?["currentStreak"])"))
-//        self.myarray.append("Record Streak: " + self.chop(s: "\(attrObject?["recordStreak"])"))
-        
-        //        self.addToArray(th: "\(attrObject?["wins"])")
-        //        self.addToArray(th: "\(attrObject?["losses"])")
-        //        self.addToArray(th: "\(attrObject?["currentStreak"])")
-        //        self.addToArray(th: "\(attrObject?["recordStreak"])")
-        //
-        //        let wn3 = "WINS: " + self.chop(s: wn2)
-        //        self.myarray.append(wn3)
-//        self.ProfileTableView.reloadData()
-        //          //creating artist object with model and fetched values
-        //          let artist = ArtistModel(id: artistId as! String?, name: artistName as! String?, genre: artistGenre as! String?)
-        //
-        //          //appending it to list
-        //          self.artistList.append(artist)
-        
-        //        }
-        
-        //reloading the tableview
-        //        self.tableViewArtists.reloadData()
       }
       
+      self.formatPie()
       
-      self.setupPie()
     })
-    
-    
-    
-    
   }
   
-  func setupPie() {
+  func formatPie() {
+    
     graph.chartDescription?.enabled = false
-    graph.drawHoleEnabled = true
+    graph.chartDescription?.text = "description would go here"
+    
     graph.rotationAngle = 0
     graph.rotationEnabled = false
-    graph.isUserInteractionEnabled = false
+    graph.isUserInteractionEnabled = true
     
-    //    graph.legend.enabled = false;
+    graph.noDataText = "No data available"
+    graph.holeRadiusPercent = 0.3
+//    graph.transparentCircleColor = UIColor.clear
+    graph.transparentCircleRadiusPercent = 0.4
     
-    //    var picks: [PieChartDataEntry] = Array()
+    graph.legend.enabled = true;
+    graph.legend.font = UIFont.boldSystemFont(ofSize: 18)
+    graph.legend.textColor = UIColor.white
+    graph.legend.formSize = CGFloat(20.0)
+    
+    graph.drawHoleEnabled = true
+    graph.holeColor = UIColor.clear
+    
+    let green = NSUIColor(hex: 0xfc913f)
+    let orange = NSUIColor(hex: 0x39e830)
+    let white = NSUIColor(hex: 0xffffff)
+    let black = NSUIColor(hex: 0x000000)
+    
+    
+    
+    let chartAttribute = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17) ]
+    let chartAttrString = NSAttributedString(string: "Career Record", attributes: chartAttribute)
+    graph.centerAttributedText = chartAttrString
+    
     
     
     let dataSet = PieChartDataSet(values: qTries, label: "")
+    dataSet.valueColors = [white,white]
+    dataSet.valueFont = UIFont.boldSystemFont(ofSize: 18)
+    dataSet.colors = [green, orange]
+    
+    //    dataSet.xValuePosition = PieChartDataSet.ValuePosition.outsideSlice
+    
     let chartData = PieChartData(dataSet: dataSet)
     
-    let green = NSUIColor(hex: 0x16822b)
-    let red = NSUIColor(hex: 0xaa1111)
-    dataSet.colors = [green, red]
+    
     
     graph.data = chartData
+    //    graph.backgroundColor = bg
     
   }
   
@@ -138,14 +135,6 @@ class ProfileGraphViewController: UIViewController {
   }
 
   
-  
-  func changeRight() {
-    
-  }
-  
-  func changeWrong() {
-    
-  }
 
 }
 
