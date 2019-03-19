@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -79,8 +80,16 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.performSegue(withIdentifier: "LeaderboardToEvent", sender: self)
     }
     
+    
     @IBAction func buttonProfile(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "LeaderboardToProfile", sender: self)
+        if (Auth.auth().currentUser?.email != nil) {
+            self.performSegue(withIdentifier: "LeaderboardToProfile", sender: self)
+        }
+        else {
+            let alert = UIAlertController(title:"You are not signed in!", message: "Please sign in to access profile data", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     
