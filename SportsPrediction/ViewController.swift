@@ -71,7 +71,7 @@ struct Meta: Codable{
     let delta_last_id: String
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
   
   let defaults = UserDefaults.standard
   
@@ -126,5 +126,10 @@ class ViewController: UIViewController {
         }
       })
   }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 }
 
