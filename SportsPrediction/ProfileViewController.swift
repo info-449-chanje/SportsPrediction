@@ -13,7 +13,6 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Auth.auth().currentUser
         // Do any additional setup after loading the view.
     }
     
