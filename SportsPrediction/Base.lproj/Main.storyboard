@@ -310,7 +310,6 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonStats:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="hgg-ry-4rx"/>
                                     <segue destination="xXq-4e-ZtO" kind="showDetail" identifier="ProfileToStats" id="WR9-Xr-2H5"/>
                                 </connections>
                             </button>
@@ -321,8 +320,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonSignOut:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="URJ-Ab-B8e"/>
-                                    <action selector="buttonStats:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="gf5-Cc-r1E"/>
+                                    <action selector="buttonSignOut:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="gpv-GJ-RMO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -656,6 +654,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="WR9-Xr-2H5"/>
         <segue reference="OcK-C4-dIT"/>
         <segue reference="b65-m7-fvO"/>
         <segue reference="9ud-zA-Cfv"/>
