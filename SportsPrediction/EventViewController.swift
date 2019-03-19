@@ -35,15 +35,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/2/events?", sportId: "2")
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/6/events?", sportId: "6")
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/3/events?", sportId: "3")
+            self.EventTableView.reloadData();
         }
-        fillEvents();
         EventTableView.dataSource = self;
         EventTableView.delegate = self;
-        
         //print(self.eventList)
     }
     
-    func fillEvents() {
+    func fillEvents(jsonData: [Event]) -> [Games] {
+        var sportsGames: [Games] = [];
         var nbaGames: [Event] = [];
         var nflGames: [Event] = [];
         var nhlGames: [Event] = [];
@@ -59,10 +59,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 mlbGames.append(event);
             }
         }
-        gameArray.append(Games(sectionName: "NBA", sectionObjects: nbaGames))
-        gameArray.append(Games(sectionName: "NFL", sectionObjects: nflGames));
-        gameArray.append(Games(sectionName: "NHL", sectionObjects: nhlGames))
-        gameArray.append(Games(sectionName: "MLB", sectionObjects: mlbGames))
+        print(nbaGames);
+        print(nhlGames);
+        sportsGames.append(Games(sectionName: "NBA", sectionObjects: nbaGames))
+        sportsGames.append(Games(sectionName: "NHL", sectionObjects: nhlGames))
+        sportsGames.append(Games(sectionName: "MLB", sectionObjects: mlbGames))
+        sportsGames.append(Games(sectionName: "NFL", sectionObjects: nflGames))
+        return sportsGames;
 
     }
     
@@ -87,12 +90,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = UIAlertController(title: "Pick a Team!", message: "Choose Between the Two Teams Below..", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: eventList[indexPath.row].teams[0].name , style: .default, handler:  { action in
-            let pick = Pick(pick: self.eventList[indexPath.row].teams[0].name, event: self.eventList[indexPath.row])
+        alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name , style: .default, handler:  { action in
+            let pick = Pick(pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row])
             self.picks.append(pick);
         }));
-        alert.addAction(UIAlertAction(title: eventList[indexPath.row].teams[1].name, style: .default, handler: { action in
-            let pick = Pick(pick: self.eventList[indexPath.row].teams[1].name, event: self.eventList[indexPath.row])
+        alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
+            let pick = Pick(pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row])
             self.picks.append(pick);
         }));
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -134,8 +137,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 jsonData = self.enumDate(jsonData!)
                 //jsonData = self.addResult(jsonData!)
                 self.eventList = self.eventList + jsonData!
+
+                self.gameArray = self.fillEvents(jsonData: self.eventList);
                 print(jsonData)
-                self.EventTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.EventTableView.reloadData();
+                }
                 // print(self.jsonData ?? EventList.self)
             } catch {
                 self.failDownloadAlert()
