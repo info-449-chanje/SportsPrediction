@@ -14,28 +14,72 @@ struct Pick {
     var event: Event
 }
 
+struct Games {
+    var sectionName: String
+    var sectionObjects: [Event]
+}
+
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var eventList: [Event] = [];
     var picks: [Pick] = [];
+    var gameArray: [Games] = [];
     
     @IBOutlet weak var EventTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fillEvents();
         EventTableView.dataSource = self;
         EventTableView.delegate = self;
       
     }
     
+    func fillEvents() {
+        var nbaGames: [Event] = [];
+        var nflGames: [Event] = [];
+        var nhlGames: [Event] = [];
+        var mlbGames: [Event] = [];
+        var sectionName: String = ""
+        for (event) in self.eventList {
+            if (event.sport_id == 2) {
+                sectionName = "NFL"
+                nflGames.append(event);
+            } else if (event.sport_id == 4) {
+                sectionName = "NBA"
+                nbaGames.append(event);
+            } else if (event.sport_id == 6) {
+                sectionName = "NHL"
+                nhlGames.append(event);
+            } else {
+                sectionName = "MLB"
+                mlbGames.append(event);
+            }
+        }
+        gameArray.append(Games(sectionName: sectionName, sectionObjects: nbaGames))
+//        gameArray.append(Games(sectionName: sectionName, sectionObjects: nflGames));
+//        gameArray.append(Games(sectionName: sectionName, sectionObjects: nhlGames))
+//        gameArray.append(Games(sectionName: sectionName, sectionObjects: mlbGames))
+
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return gameArray.count;
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventList.count;
+        return gameArray[section].sectionObjects.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell")!;
-        cell.textLabel?.text = eventList[indexPath.row].teams[0].name + " vs. " + eventList[indexPath.row].teams[1].name ;
+        cell.textLabel?.text = gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name + " vs. " + gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name
+//        cell.textLabel?.text = eventList[indexPath.row].teams[0].name + " vs. " + eventList[indexPath.row].teams[1].name;
         return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return gameArray[section].sectionName;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
