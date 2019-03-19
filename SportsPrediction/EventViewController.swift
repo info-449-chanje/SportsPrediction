@@ -16,6 +16,16 @@ struct Pick {
     let home: String;
     let pick: String;
     let result: Bool;
+    var dictionary: [String: Any] {
+        return ["away": away,
+                "date": date,
+                "home": home,
+                "pick": pick,
+                "result": result]
+    }
+    var nsDictionary: NSDictionary {
+        return dictionary as NSDictionary
+    }
 }
 
 struct Games {
@@ -25,9 +35,10 @@ struct Games {
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var eventList: [Event] = [];
-    var picks: [Pick] = [];
-    var gameArray: [Games] = [];
+    var eventList: [Event] = []
+    var picks: [Pick]? = []
+    
+    var gameArray: [Games] = []
     let dateFormat = "yyyy-MM-DDHH:mm:sszzz"
     var ref: DatabaseReference!
     let email = Auth.auth().currentUser?.email!
@@ -37,9 +48,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference().child("users").child(name);
         let emailBeforePeriod = email?.split(separator: "@")
         name = String((emailBeforePeriod?[0])!)
+        ref = Database.database().reference().child("users").child(name)
+        
+        //self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: ref)
         DispatchQueue.main.async {
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/4/events?", sportId: "4")
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/2/events?", sportId: "2")
@@ -69,8 +82,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 mlbGames.append(event);
             }
         }
-        print(nbaGames);
-        print(nhlGames);
         sportsGames.append(Games(sectionName: "NBA", sectionObjects: nbaGames))
         sportsGames.append(Games(sectionName: "NHL", sectionObjects: nhlGames))
         sportsGames.append(Games(sectionName: "MLB", sectionObjects: mlbGames))
@@ -116,25 +127,77 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 result = true
             }
             let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, result: result)
-            print(pick);
-            self.picks.append(pick);
+            self.picks?.append(pick)
+            self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
         }));
         alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
             if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name){
                 result = true
             }
             let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, result: result);
-            self.picks.append(pick);
-            print(pick);
+            self.picks?.append(pick);
+            self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
         }));
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
-    func
+    func readStreaks(completion: @escaping ([String: AnyObject], Pick) -> Void, ref: DatabaseReference, pick: Pick) {
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! [String: AnyObject]
+            completion(value, pick)
+        })
+    }
+    
+    func streakCompletionHandler(data: [String: AnyObject], pick: Pick) {
+        let curr: Int = data["currentStreak"] as! Int
+        let record: Int = data["currentStreak"] as! Int
+    }
+    
+    
+    func readPicksfromDatabase(completion: @escaping ([String: AnyObject]) -> Void, ref: DatabaseReference) {
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! [String: AnyObject]
+            completion(value)
+        })
+    }
+
+    func readCompletionHandler(data: [String: AnyObject]) {
+        let loaded: NSArray = data["picks"] as! NSArray
+        for p in loaded {
+            let dict = p as! Dictionary<String,Any>
+            //if let dict = p as? NSDictionary {
+            // use the NSArray list here
+            self.picks?.append(Pick(away: dict["away"] as! String, date: dict["date"] as! String, home: dict["home"] as! String, pick: dict["pick"] as! String, result: dict["result"] as! Bool))
+            //}
+        }
+        var loadablePicks: [NSDictionary]? = []
+        for p in picks! {
+            loadablePicks?.append(p.nsDictionary)
+        }
+        if let loadablePicks = loadablePicks,
+            let list = loadablePicks as? NSArray {
+            //self.ref.setValue(["picks": nil])
+            self.ref.setValue(["picks": list])
+        }
+    }
+    
     
     func writeDataToPicks() {
-        
+        var loadablePicks: [NSDictionary]? = []
+        for p in picks! {
+            loadablePicks?.append(p.nsDictionary)
+        }
+        if let loadablePicks = loadablePicks,
+            let list = loadablePicks as? NSArray {
+            //self.ref.setValue(["picks": nil])
+            self.ref.setValue(["picks": list])
+        }
+//        if let p = p,
+//            list = p as? NSArray {
+//            self.ref.setValue(["picks": list])
+//        }
+        //self.ref.setValue(["picks": p])
         
     }
     
@@ -179,7 +242,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.eventList = self.eventList + jsonData
 
                 self.gameArray = self.fillEvents(jsonData: self.eventList);
-                print(jsonData)
                 DispatchQueue.main.async {
                     self.EventTableView.reloadData();
                 }
