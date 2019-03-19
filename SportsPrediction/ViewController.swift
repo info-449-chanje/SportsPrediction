@@ -57,6 +57,9 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/4/events?")
+//    handle = Auth.auth().addStateDidChangeListener( { (auth, user) in
+//        
+//    })
   }
   
   func fetchJson(_ fetchUrl: String){

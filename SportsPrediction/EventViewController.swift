@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,7 +19,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         EventTableView.dataSource = self;
         EventTableView.delegate = self;
-        // Do any additional setup after loading the view.
+      
     }
     
     override func viewDidAppear(_ animated: Bool) {
