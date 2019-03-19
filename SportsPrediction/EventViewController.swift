@@ -10,8 +10,10 @@ import UIKit
 import FirebaseAuth
 
 struct Pick {
-    let pick: String
-    var event: Event
+    let away: String;
+    let date: String;
+    let home: String;
+    let result: Bool;
 }
 
 struct Games {
@@ -90,12 +92,29 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = UIAlertController(title: "Pick a Team!", message: "Choose Between the Two Teams Below..", preferredStyle: .alert)
+        var home: String = "";
+        var away: String = "";
+        var result: Bool = false;
+        if (self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].is_away) {
+            away = self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name;
+            home = self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name;
+        } else {
+            home = self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name;
+            away = self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name;
+        }
+        
         alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name , style: .default, handler:  { action in
-            let pick = Pick(pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row])
+            if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name){
+                result = true
+            }
+            let pick = Pick(away: away, home: home, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name, result: result)
             self.picks.append(pick);
         }));
         alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
-            let pick = Pick(pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row])
+            if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name){
+                result = true
+            }
+            let pick = Pick(pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row], result: result)
             self.picks.append(pick);
         }));
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
