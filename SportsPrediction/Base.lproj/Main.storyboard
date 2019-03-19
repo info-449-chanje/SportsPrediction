@@ -320,6 +320,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="buttonStats:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="2DP-D1-6ym"/>
                                     <segue destination="xXq-4e-ZtO" kind="showDetail" identifier="ProfileToStats" id="WR9-Xr-2H5"/>
                                 </connections>
                             </button>
@@ -369,15 +370,15 @@
             </objects>
             <point key="canvasLocation" x="1908" y="195"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile Graph View Controller-->
         <scene sceneID="pcp-9s-bh1">
             <objects>
-                <viewController id="xXq-4e-ZtO" customClass="ProfileViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xXq-4e-ZtO" customClass="ProfileGraphViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="akY-UK-bDW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile (graph)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkJ-vw-5Uk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkJ-vw-5Uk">
                                 <rect key="frame" x="50" y="70" width="275" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="YsD-rB-G5w"/>
@@ -396,9 +397,8 @@
                                     <segue destination="Fvl-pC-N6c" kind="showDetail" identifier="GraphToProfile" id="9ud-zA-Cfv"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CF0-jx-1rr" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="67" y="370" width="240" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CF0-jx-1rr" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="30" y="156" width="315" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -407,20 +407,24 @@
                             <constraint firstItem="xkJ-vw-5Uk" firstAttribute="top" secondItem="Dx4-62-QCJ" secondAttribute="bottom" constant="20" id="4C4-2Z-dh8"/>
                             <constraint firstItem="px2-Mr-eDQ" firstAttribute="trailing" secondItem="Dx4-62-QCJ" secondAttribute="trailing" constant="250" id="BmW-i5-nTD"/>
                             <constraint firstItem="xkJ-vw-5Uk" firstAttribute="top" secondItem="px2-Mr-eDQ" secondAttribute="top" constant="50" id="Cwr-hz-8NN"/>
+                            <constraint firstItem="px2-Mr-eDQ" firstAttribute="bottom" secondItem="CF0-jx-1rr" secondAttribute="bottom" constant="100" id="Eri-mi-IvG"/>
+                            <constraint firstItem="CF0-jx-1rr" firstAttribute="leading" secondItem="px2-Mr-eDQ" secondAttribute="leading" constant="30" id="M32-Kc-JYK"/>
+                            <constraint firstItem="CF0-jx-1rr" firstAttribute="top" secondItem="xkJ-vw-5Uk" secondAttribute="bottom" constant="40" id="PcK-s1-6pZ"/>
                             <constraint firstItem="Dx4-62-QCJ" firstAttribute="leading" secondItem="px2-Mr-eDQ" secondAttribute="leading" constant="20" id="YCs-HR-g1d"/>
                             <constraint firstItem="px2-Mr-eDQ" firstAttribute="trailing" secondItem="xkJ-vw-5Uk" secondAttribute="trailing" constant="50" id="nZa-b1-EnT"/>
+                            <constraint firstAttribute="trailing" secondItem="CF0-jx-1rr" secondAttribute="trailing" constant="30" id="oFs-QT-s81"/>
                             <constraint firstItem="xkJ-vw-5Uk" firstAttribute="leading" secondItem="px2-Mr-eDQ" secondAttribute="leading" constant="50" id="wa4-kQ-Qjz"/>
                             <constraint firstItem="Dx4-62-QCJ" firstAttribute="top" secondItem="px2-Mr-eDQ" secondAttribute="top" id="xuE-qW-wtY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="px2-Mr-eDQ"/>
                     </view>
                     <connections>
-                        <outlet property="graph" destination="CF0-jx-1rr" id="x1x-pY-tIM"/>
+                        <outlet property="graph" destination="CF0-jx-1rr" id="5mp-hr-4jm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF5-f4-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724" y="195"/>
+            <point key="canvasLocation" x="2724" y="194.75262368815595"/>
         </scene>
         <!--Event View Controller-->
         <scene sceneID="dwU-6R-R7M">
@@ -676,9 +680,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S2H-mY-FRB"/>
-        <segue reference="hUr-4h-eTo"/>
-        <segue reference="clA-SL-zPG"/>
+        <segue reference="OcK-C4-dIT"/>
+        <segue reference="BgJ-Tn-ChM"/>
+        <segue reference="9ud-zA-Cfv"/>
         <segue reference="uDm-GJ-h6f"/>
     </inferredMetricsTieBreakers>
 </document>

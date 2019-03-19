@@ -166,7 +166,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
   }
   
-  
+  @IBAction func buttonStats(_ sender: UIButton) {
+    self.performSegue(withIdentifier: "ProfileToStats", sender: self)
+  }
 
     @IBAction func buttonEvent(_ sender: UIButton) {
         self.performSegue(withIdentifier: "ProfileToEvent", sender: self)

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1305D7F9CDE4EAFBD1206993 /* Pods_SportsPrediction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABB2D61C3F33E57E62EE739 /* Pods_SportsPrediction.framework */; };
 		70475ADB223F20F700EC3846 /* ProfileGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */; };
+		708937DC2240BC490025BAE9 /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708937DB2240BC490025BAE9 /* NSUIColor+Hex.swift */; };
 		9D99D056223B210600D8F5D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */; };
 		9DA3D589223F15EF00F57685 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA3D588223F15EF00F57685 /* SignUpViewController.swift */; };
 		9DD3C0D6223F436900EF77F8 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD3C0D5223F436900EF77F8 /* EventViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGraphViewController.swift; sourceTree = "<group>"; };
+		708937DB2240BC490025BAE9 /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
 		9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DA3D588223F15EF00F57685 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9DD3C0D5223F436900EF77F8 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				9DE454A1224061B500124877 /* InProgressViewController.swift */,
 				9DE4549F2240615200124877 /* LeaderboardViewController.swift */,
 				9DE4549D2240609200124877 /* ProfileViewController.swift */,
+				708937DB2240BC490025BAE9 /* NSUIColor+Hex.swift */,
 				70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */,
 				9F1FBC4B222F720500397180 /* Main.storyboard */,
 				9F1FBC4E222F720600397180 /* Assets.xcassets */,
@@ -244,6 +247,7 @@
 				9DD3C0D6223F436900EF77F8 /* EventViewController.swift in Sources */,
 				9DA3D589223F15EF00F57685 /* SignUpViewController.swift in Sources */,
 				9DE454A2224061B500124877 /* InProgressViewController.swift in Sources */,
+				708937DC2240BC490025BAE9 /* NSUIColor+Hex.swift in Sources */,
 				9F1FBC4A222F720500397180 /* ViewController.swift in Sources */,
 				70475ADB223F20F700EC3846 /* ProfileGraphViewController.swift in Sources */,
 				9F1FBC48222F720500397180 /* AppDelegate.swift in Sources */,
