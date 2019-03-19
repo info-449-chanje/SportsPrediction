@@ -137,7 +137,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let string = "\(fetchUrl)include=scores+or+teams+or+all_periods&sport-id=\(sportId)"
         let url = NSURL(string: string)
         let request = NSMutableURLRequest(url: url! as URL)
-        var jsonData: [Event]? = nil
+        var jsonData: [Event] = []
         
         request.setValue("*", forHTTPHeaderField: "Access-Control-Allow-Origin") //**
         request.setValue("d372d41f7fmshe392f01d3e7c6b0p13f111jsn1169de9473f3", forHTTPHeaderField: "X-RapidAPI-Key") //**
@@ -152,10 +152,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             do{
                 let eventlist = try JSONDecoder().decode(EventList.self, from: data)
-                jsonData = eventlist.events
-                jsonData = self.enumDate(jsonData!)
+                
+                for e in eventlist.events{
+                    let w = self.addResult(e)
+                    jsonData.append(Event(event_id: e.event_id, sport_id: e.sport_id, event_date: e.event_date, teams: e.teams, winner: w))
+                }
+                jsonData = self.enumDate(jsonData)
                 //jsonData = self.addResult(jsonData!)
-                self.eventList = self.eventList + jsonData!
+                self.eventList = self.eventList + jsonData
 
                 self.gameArray = self.fillEvents(jsonData: self.eventList);
                 print(jsonData)
@@ -187,20 +191,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return events
     }
     
-//    func addResult(_ jsonData: [Event]) -> [Event]{
-//        var i: Int = 0
-//        var events = jsonData
-//        while i < events.count{
-//            let result = Bool.random()
-//            if(result) {
-//                events[i].winner = events[i].teams[0]
-//            } else {
-//                events[i].winner = events[i].teams[1]
-//            }
-//            i = i + 1
-//        }
-//        return events
-//    }
+    func addResult(_ e: loadEvent) -> Team{
+        var i: Int = 0
+        let result = Bool.random()
+        if(result) {
+            return e.teams[0]
+        } else {
+            return e.teams[1]
+        }
+    }
     
     func strToDate(_ str: String) -> Date {
         let dateFormatter = DateFormatter()
