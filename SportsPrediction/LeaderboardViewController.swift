@@ -24,7 +24,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leaderboardCell")
-        cell!.textLabel?.text = users[indexPath.row]
+        cell!.textLabel?.text = "\(indexPath.row + 1).   \(users[indexPath.row])"
         return cell!
     }
     
