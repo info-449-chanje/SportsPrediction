@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 struct Pick {
     let away: String;
@@ -107,18 +108,28 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name){
                 result = true
             }
-            let pick = Pick(away: away, home: home, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name, result: result)
+            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, result: result)
+            print(pick);
             self.picks.append(pick);
         }));
         alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
             if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name){
                 result = true
             }
-            let pick = Pick(pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, event: self.gameArray[indexPath.section].sectionObjects[indexPath.row], result: result)
+            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, result: result);
             self.picks.append(pick);
+            print(pick);
         }));
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    func writeDataToFirebase() {
+        let email = Auth.auth().currentUser?.email!
+        var emailBeforePeriod = email?.split(separator: "@")
+        let name = String((emailBeforePeriod?[0])!)
+        var ref: DatabaseReference!
+        ref = Database.database().reference().child("users").child(name);
     }
     
     @IBAction func buttonProfile(_ sender: UIButton) {
