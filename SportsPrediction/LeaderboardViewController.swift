@@ -63,17 +63,14 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             combinedUserAndStreak[element] = streaks[index]
         }
         let sortedDict = combinedUserAndStreak.sorted(by: { $0.value > $1.value})
-        combinedUserAndStreak.removeAll()
-        var j = 0
-        while j < sortedDict.count {
-            combinedUserAndStreak[sortedDict[j].key] = sortedDict[j].value
-            j = j + 1
-        }
+        print(sortedDict)
         users.removeAll()
         streaks.removeAll()
-        for (key, value) in combinedUserAndStreak {
-            users.append(key)
-            streaks.append(value)
+        var j = 0
+        while j < sortedDict.count {
+            users.append(sortedDict[j].key)
+            streaks.append(sortedDict[j].value)
+            j = j + 1
         }
         print(users, streaks)
         DispatchQueue.main.async {
