@@ -43,21 +43,6 @@ struct TeamNormalized: Codable{
   let is_home: Bool
 }
 
-struct futurePick: Codable {
-  let date: String
-  let home: String
-  let away: String
-  let pick: String
-}
-
-struct pastGame: Codable {
-  let date: String
-  let home: String
-  let away: String
-  let winner: String
-  let pick: String
-}
-
 struct Meta: Codable{
   let delta_last_id: String
 }
