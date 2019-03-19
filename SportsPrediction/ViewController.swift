@@ -13,10 +13,10 @@ import FirebaseAuth
 
 struct EventList: Codable{
     let meta: Meta
-    var events: [Event]
+    var events: [loadEvent]
 }
 
-struct Event: Codable{
+struct loadEvent: Codable{
     let event_id: String
     let sport_id: Int
     var event_date: String?
@@ -25,6 +25,14 @@ struct Event: Codable{
     let teams: [Team]
     let teams_normalized: [TeamNormalized]
     //var winner: Team
+}
+
+struct Event: Codable{
+    let event_id: String
+    let sport_id: Int
+    var event_date: String?
+    let teams: [Team]
+    var winner: Team
 }
 
 struct Team: Codable{
