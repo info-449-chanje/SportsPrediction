@@ -25,26 +25,70 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   
   var history: [pastGame] = [];
   
-  
   var myarray: [String] = []
   
   
-  var ref : DatabaseReference! = Database.database().reference()
-  var handle : DatabaseHandle!
+  var ref : DatabaseReference!
   
+//  var array = [String]()
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view.
+    ProfileTableView.dataSource = self
+    ProfileTableView.delegate = self
+    
+    setUpArray()
+    
+    
+    
+    ref = Database.database().reference().child("users").child("sam")
+//    ref.observe
+    
+    
+    //observing the data changes
+    ref.observe(DataEventType.value, with: { (snapshot) in
+      
+      //if the reference have some values
+      if snapshot.childrenCount > 0 {
+        
+        
+        //iterating through all the values
+//        for attr in snapshot.children.allObjects as! [DataSnapshot] {
+          //getting values
+          let attrObject = snapshot.value as? [String: AnyObject]
+          let wn  = attrObject?["wins"]
+          let wn2 = "\(wn)"
+          let wn3 = "WINS: " + self.chop(s: wn2)
+          print(wn3)
+        
+        
+          self.myarray.append(wn3)
+//          //creating artist object with model and fetched values
+//          let artist = ArtistModel(id: artistId as! String?, name: artistName as! String?, genre: artistGenre as! String?)
+//
+//          //appending it to list
+//          self.artistList.append(artist)
+          
+//        }
+        
+        //reloading the tableview
+//        self.tableViewArtists.reloadData()
+      }
+    })
+    
+    print(myarray)
+    
+//  getUserData()
+    
+    
+  }
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-      ProfileTableView.dataSource = self
-      ProfileTableView.delegate = self
-      
-      setUpArray()
-      
-//      getUserData()
-      
-      
-    }
+  func chop(s: String) -> String {
+    let r = s.index(s.startIndex, offsetBy: 9)..<s.index(s.endIndex, offsetBy: -1)
+    let substring = s[r]
+    return String(substring)
+  }
   
   
   func setUpArray() {
@@ -71,26 +115,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
   
   
   
-  /*
+
   func getUserData() {
     
-    
-    ref.observeSingleEvent(of: .value, with: { snapshot in
-      
-      if !snapshot.exists() { return }
-      
-      //print(snapshot)
-      
-      if let userName = snapshot.value!["wins"] as? String {
-        print(userName)
-      }
-      if let email = snapshot.value!["wins"] as? String {
-        print(email)
-      }
-      
-      // can also use
-      // snapshot.childSnapshotForPath("full_name").value as! String
-    })
     
     
     let userID = Auth.auth().currentUser?.uid
@@ -130,7 +157,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
   }
-  */
+  
   
 
     @IBAction func buttonEvent(_ sender: UIButton) {
