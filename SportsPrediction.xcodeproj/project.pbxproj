@@ -91,12 +91,12 @@
 				9DE4549F2240615200124877 /* LeaderboardViewController.swift */,
 				9DE4549D2240609200124877 /* ProfileViewController.swift */,
 				70475ADA223F20F700EC3846 /* ProfileGraphViewController.swift */,
-				9F1FBC45222F720500397180 /* Products */,
 				9F1FBC4B222F720500397180 /* Main.storyboard */,
 				9F1FBC4E222F720600397180 /* Assets.xcassets */,
 				9F1FBC50222F720600397180 /* LaunchScreen.storyboard */,
 				9F1FBC53222F720600397180 /* Info.plist */,
 				9D99D055223B210600D8F5D3 /* GoogleService-Info.plist */,
+				9F1FBC45222F720500397180 /* Products */,
 			);
 			path = SportsPrediction;
 			sourceTree = "<group>";
