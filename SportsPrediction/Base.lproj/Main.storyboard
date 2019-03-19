@@ -320,6 +320,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="buttonStats:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="2DP-D1-6ym"/>
                                     <segue destination="xXq-4e-ZtO" kind="showDetail" identifier="ProfileToStats" id="WR9-Xr-2H5"/>
                                 </connections>
                             </button>
@@ -369,10 +370,10 @@
             </objects>
             <point key="canvasLocation" x="1908" y="195"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile Graph View Controller-->
         <scene sceneID="pcp-9s-bh1">
             <objects>
-                <viewController id="xXq-4e-ZtO" customClass="ProfileViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xXq-4e-ZtO" customClass="ProfileGraphViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="akY-UK-bDW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,7 +416,7 @@
                         <viewLayoutGuide key="safeArea" id="px2-Mr-eDQ"/>
                     </view>
                     <connections>
-                        <outlet property="graph" destination="CF0-jx-1rr" id="x1x-pY-tIM"/>
+                        <outlet property="graph" destination="CF0-jx-1rr" id="5mp-hr-4jm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF5-f4-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
