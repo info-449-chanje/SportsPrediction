@@ -40,26 +40,21 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var nflGames: [Event] = [];
         var nhlGames: [Event] = [];
         var mlbGames: [Event] = [];
-        var sectionName: String = ""
         for (event) in self.eventList {
             if (event.sport_id == 2) {
-                sectionName = "NFL"
                 nflGames.append(event);
             } else if (event.sport_id == 4) {
-                sectionName = "NBA"
                 nbaGames.append(event);
             } else if (event.sport_id == 6) {
-                sectionName = "NHL"
                 nhlGames.append(event);
             } else {
-                sectionName = "MLB"
                 mlbGames.append(event);
             }
         }
-        gameArray.append(Games(sectionName: sectionName, sectionObjects: nbaGames))
-//        gameArray.append(Games(sectionName: sectionName, sectionObjects: nflGames));
-//        gameArray.append(Games(sectionName: sectionName, sectionObjects: nhlGames))
-//        gameArray.append(Games(sectionName: sectionName, sectionObjects: mlbGames))
+        gameArray.append(Games(sectionName: "NBA", sectionObjects: nbaGames))
+        gameArray.append(Games(sectionName: "NFL", sectionObjects: nflGames));
+        gameArray.append(Games(sectionName: "NHL", sectionObjects: nhlGames))
+        gameArray.append(Games(sectionName: "MLB", sectionObjects: mlbGames))
 
     }
     
