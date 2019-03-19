@@ -57,6 +57,9 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/4/events?")
+//    handle = Auth.auth().addStateDidChangeListener( { (auth, user) in
+//        
+//    })
   }
   
   func fetchJson(_ fetchUrl: String){
@@ -151,7 +154,14 @@ class ViewController: UIViewController {
   }
 
   @IBAction func buttonGuest(_ sender: UIButton) {
-      self.performSegue(withIdentifier: "LogIn", sender: self)
+      Auth.auth().signInAnonymously(completion: { (authResult, error) in
+        if authResult != nil {
+            self.performSegue(withIdentifier: "LogIn", sender: self)
+        }
+        else {
+            self.errorLabel.text = error!.localizedDescription
+        }
+      })
   }
 }
 

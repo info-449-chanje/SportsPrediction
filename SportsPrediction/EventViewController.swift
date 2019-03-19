@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 struct Pick {
     let pick: String
@@ -24,7 +25,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         EventTableView.dataSource = self;
         EventTableView.delegate = self;
-        // Do any additional setup after loading the view.
+      
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

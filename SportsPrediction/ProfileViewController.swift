@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func buttonLeaderboard(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "ProfileToGraph", sender: self)
+        self.performSegue(withIdentifier: "ProfileToLeaderboard", sender: self)
     }
     
 }

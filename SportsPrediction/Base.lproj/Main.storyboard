@@ -334,16 +334,17 @@
                     <connections>
                         <segue destination="xXq-4e-ZtO" kind="showDetail" identifier="ProfileToGraph" id="8CV-Aj-rss"/>
                         <segue destination="W45-Ck-kig" kind="showDetail" identifier="ProfileToEvent" id="b65-m7-fvO"/>
+                        <segue destination="DlU-vf-dCI" kind="showDetail" identifier="ProfileToLeaderboard" id="OcK-C4-dIT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uD-cK-cJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1908" y="195"/>
         </scene>
-        <!--Profile Graph View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="pcp-9s-bh1">
             <objects>
-                <viewController id="xXq-4e-ZtO" customClass="ProfileGraphViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xXq-4e-ZtO" customClass="ProfileViewController" customModule="SportsPrediction" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="akY-UK-bDW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -391,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KF5-f4-zVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724" y="192.95352323838082"/>
+            <point key="canvasLocation" x="2724" y="195"/>
         </scene>
         <!--Event View Controller-->
         <scene sceneID="dwU-6R-R7M">
@@ -636,7 +637,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b65-m7-fvO"/>
-        <segue reference="yiT-Hc-xKY"/>
+        <segue reference="OcK-C4-dIT"/>
+        <segue reference="hUr-4h-eTo"/>
+        <segue reference="9ud-zA-Cfv"/>
     </inferredMetricsTieBreakers>
 </document>
