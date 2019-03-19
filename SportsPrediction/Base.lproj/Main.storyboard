@@ -309,18 +309,37 @@
                                 <state key="normal" title="View Stats">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonStats:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="hgg-ry-4rx"/>
+                                    <segue destination="xXq-4e-ZtO" kind="showDetail" identifier="ProfileToStats" id="WR9-Xr-2H5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzy-qx-E87">
+                                <rect key="frame" x="20" y="20" width="105" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonSignOut:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="URJ-Ab-B8e"/>
+                                    <action selector="buttonStats:" destination="Fvl-pC-N6c" eventType="touchUpInside" id="gf5-Cc-r1E"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4oM-3W-mex" firstAttribute="top" secondItem="L9L-z3-9VM" secondAttribute="bottom" constant="20" id="3BR-Yd-hYv"/>
+                            <constraint firstItem="pzy-qx-E87" firstAttribute="top" secondItem="N6O-8P-Xl4" secondAttribute="top" id="9hf-9G-YbR"/>
                             <constraint firstItem="N6O-8P-Xl4" firstAttribute="trailing" secondItem="RHb-cQ-g63" secondAttribute="trailing" constant="25" id="JHY-lu-Tvw"/>
+                            <constraint firstItem="pzy-qx-E87" firstAttribute="leading" secondItem="N6O-8P-Xl4" secondAttribute="leading" constant="20" id="MFu-wl-f6l"/>
                             <constraint firstItem="N6O-8P-Xl4" firstAttribute="trailing" secondItem="L9L-z3-9VM" secondAttribute="trailing" constant="20" id="NnD-8v-yIz"/>
                             <constraint firstItem="Bc1-IZ-gUZ" firstAttribute="top" secondItem="RHb-cQ-g63" secondAttribute="bottom" constant="5" id="OxC-PO-y20"/>
                             <constraint firstItem="Bc1-IZ-gUZ" firstAttribute="leading" secondItem="N6O-8P-Xl4" secondAttribute="leading" constant="1" id="Qng-4w-nzY"/>
+                            <constraint firstItem="L9L-z3-9VM" firstAttribute="leading" secondItem="pzy-qx-E87" secondAttribute="trailing" constant="125" id="Ryg-xk-wjD"/>
                             <constraint firstItem="L9L-z3-9VM" firstAttribute="leading" secondItem="N6O-8P-Xl4" secondAttribute="leading" constant="250" id="VzZ-wi-yhb"/>
                             <constraint firstItem="RHb-cQ-g63" firstAttribute="leading" secondItem="N6O-8P-Xl4" secondAttribute="leading" constant="25" id="f7q-p9-bWR"/>
                             <constraint firstItem="N6O-8P-Xl4" firstAttribute="bottom" secondItem="RHb-cQ-g63" secondAttribute="bottom" constant="100" id="iBB-In-8Yz"/>
+                            <constraint firstItem="4oM-3W-mex" firstAttribute="top" secondItem="pzy-qx-E87" secondAttribute="bottom" constant="20" id="kog-iS-SGB"/>
                             <constraint firstItem="N6O-8P-Xl4" firstAttribute="trailing" secondItem="4oM-3W-mex" secondAttribute="trailing" constant="50" id="lgK-66-BP7"/>
                             <constraint firstItem="4oM-3W-mex" firstAttribute="leading" secondItem="N6O-8P-Xl4" secondAttribute="leading" constant="50" id="qWf-82-S3v"/>
                             <constraint firstItem="RHb-cQ-g63" firstAttribute="top" secondItem="4oM-3W-mex" secondAttribute="bottom" constant="30" id="tYd-0F-CxS"/>
@@ -332,9 +351,9 @@
                         <viewLayoutGuide key="safeArea" id="N6O-8P-Xl4"/>
                     </view>
                     <connections>
-                        <segue destination="xXq-4e-ZtO" kind="showDetail" identifier="ProfileToGraph" id="8CV-Aj-rss"/>
                         <segue destination="W45-Ck-kig" kind="showDetail" identifier="ProfileToEvent" id="b65-m7-fvO"/>
                         <segue destination="DlU-vf-dCI" kind="showDetail" identifier="ProfileToLeaderboard" id="OcK-C4-dIT"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="UserSignOut" id="uDm-GJ-h6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uD-cK-cJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -638,7 +657,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="OcK-C4-dIT"/>
-        <segue reference="hUr-4h-eTo"/>
+        <segue reference="b65-m7-fvO"/>
         <segue reference="9ud-zA-Cfv"/>
+        <segue reference="uDm-GJ-h6f"/>
     </inferredMetricsTieBreakers>
 </document>
