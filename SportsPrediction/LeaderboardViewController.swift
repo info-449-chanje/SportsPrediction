@@ -63,7 +63,6 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             combinedUserAndStreak[element] = streaks[index]
         }
         let sortedDict = combinedUserAndStreak.sorted(by: { $0.value > $1.value})
-        print(sortedDict)
         users.removeAll()
         streaks.removeAll()
         var j = 0
@@ -72,7 +71,6 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             streaks.append(sortedDict[j].value)
             j = j + 1
         }
-        print(users, streaks)
         DispatchQueue.main.async {
             self.leaderBoard.reloadData()
         }
