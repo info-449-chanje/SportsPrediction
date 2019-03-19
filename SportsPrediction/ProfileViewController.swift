@@ -38,11 +38,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     ProfileTableView.dataSource = self
     ProfileTableView.delegate = self
     
-    setUpArray()
+//    setUpArray()
     
+    let email = Auth.auth().currentUser?.email!
+    var emailBeforePeriod = email?.split(separator: "@")
+    let name = String((emailBeforePeriod?[0])!)
+    print(name)
     
-    
-    ref = Database.database().reference().child("users").child("sam")
+    ref = Database.database().reference().child("users").child(name) //child("sam")
 //    ref.observe
     
     
@@ -53,17 +56,24 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
       if snapshot.childrenCount > 0 {
         
         
-        //iterating through all the values
+//        iterating through all the values
 //        for attr in snapshot.children.allObjects as! [DataSnapshot] {
-          //getting values
-          let attrObject = snapshot.value as? [String: AnyObject]
-          let wn  = attrObject?["wins"]
-          let wn2 = "\(wn)"
-          let wn3 = "WINS: " + self.chop(s: wn2)
-          print(wn3)
+//        getting values
+        let attrObject = snapshot.value as? [String: AnyObject]
         
+        self.myarray.append("Wins: " + self.chop(s: "\(attrObject?["wins"])"))
+        self.myarray.append("Losses: " + self.chop(s: "\(attrObject?["losses"])"))
+        self.myarray.append("Current Streak: " + self.chop(s: "\(attrObject?["currentStreak"])"))
+        self.myarray.append("Record Streak: " + self.chop(s: "\(attrObject?["recordStreak"])"))
         
-          self.myarray.append(wn3)
+//        self.addToArray(th: "\(attrObject?["wins"])")
+//        self.addToArray(th: "\(attrObject?["losses"])")
+//        self.addToArray(th: "\(attrObject?["currentStreak"])")
+//        self.addToArray(th: "\(attrObject?["recordStreak"])")
+//
+//        let wn3 = "WINS: " + self.chop(s: wn2)
+//        self.myarray.append(wn3)
+        self.ProfileTableView.reloadData()
 //          //creating artist object with model and fetched values
 //          let artist = ArtistModel(id: artistId as! String?, name: artistName as! String?, genre: artistGenre as! String?)
 //
@@ -76,8 +86,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 //        self.tableViewArtists.reloadData()
       }
     })
-    
-    print(myarray)
     
 //  getUserData()
     
