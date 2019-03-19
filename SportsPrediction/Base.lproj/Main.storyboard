@@ -608,6 +608,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VJU-m2-pyD">
                                 <rect key="frame" x="25" y="146" width="325" height="421"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="leaderboardCell" id="Ztc-81-QpH">
+                                        <rect key="frame" x="0.0" y="28" width="325" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ztc-81-QpH" id="ygI-uy-KyR">
+                                            <rect key="frame" x="0.0" y="0.0" width="325" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lqB-aC-4KF">
                                 <rect key="frame" x="1" y="572" width="373" height="95"/>
@@ -659,6 +669,7 @@
                         <viewLayoutGuide key="safeArea" id="gPd-EF-BN2"/>
                     </view>
                     <connections>
+                        <outlet property="leaderBoard" destination="VJU-m2-pyD" id="AQM-YC-cQZ"/>
                         <segue destination="W45-Ck-kig" kind="showDetail" identifier="LeaderboardToEvent" id="hUr-4h-eTo"/>
                         <segue destination="Fvl-pC-N6c" kind="showDetail" identifier="LeaderboardToProfile" id="clA-SL-zPG"/>
                     </connections>
