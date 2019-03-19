@@ -14,6 +14,7 @@ struct Pick {
     let away: String;
     let date: String;
     let home: String;
+    let pick: String;
     let result: Bool;
 }
 
@@ -28,11 +29,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var picks: [Pick] = [];
     var gameArray: [Games] = [];
     let dateFormat = "yyyy-MM-DDHH:mm:sszzz"
+    var ref: DatabaseReference!
+    let email = Auth.auth().currentUser?.email!
+    var name = ""
     
     @IBOutlet weak var EventTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference().child("users").child(name);
+        let emailBeforePeriod = email?.split(separator: "@")
+        name = String((emailBeforePeriod?[0])!)
         DispatchQueue.main.async {
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/4/events?", sportId: "4")
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/2/events?", sportId: "2")
@@ -108,7 +115,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name){
                 result = true
             }
-            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, result: result)
+            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, result: result)
             print(pick);
             self.picks.append(pick);
         }));
@@ -116,7 +123,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name){
                 result = true
             }
-            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, result: result);
+            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, result: result);
             self.picks.append(pick);
             print(pick);
         }));
@@ -124,12 +131,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(alert, animated: true)
     }
     
-    func writeDataToFirebase() {
-        let email = Auth.auth().currentUser?.email!
-        var emailBeforePeriod = email?.split(separator: "@")
-        let name = String((emailBeforePeriod?[0])!)
-        var ref: DatabaseReference!
-        ref = Database.database().reference().child("users").child(name);
+    func
+    
+    func writeDataToPicks() {
+        
+        
     }
     
     @IBAction func buttonProfile(_ sender: UIButton) {
