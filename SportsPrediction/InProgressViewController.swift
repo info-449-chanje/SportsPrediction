@@ -32,9 +32,9 @@ class InProgressViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
     
-    func readPicksfromDatabase(completion: @escaping ([String: AnyObject]) -> Void, ref: DatabaseReference) {
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! [String: AnyObject]
+    func readPicksfromDatabase(completion: @escaping (NSDictionary) -> Void, ref: DatabaseReference) {
+        ref.child("picks").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! NSDictionary
             completion(value)
         })
     }
@@ -67,15 +67,16 @@ class InProgressViewController: UIViewController, UITableViewDelegate, UITableVi
         return(dateFormatter.date(from: str)!)
     }
     
-    func readCompletionHandler(data: [String: AnyObject]) {
+    func readCompletionHandler(data: NSDictionary) {
         let loaded: NSArray = data["picks"] as! NSArray
+        print(loaded)
         for p in loaded {
             let dict = p as! Dictionary<String,Any>
-            //if let dict = p as? NSDictionary {
-            // use the NSArray list here
-            self.picks?.append(Pick(away: dict["away"] as! String, date: dict["date"] as! String, home: dict["home"] as! String, pick: dict["pick"] as! String, result: dict["result"] as! Bool))
-            //}
-            
+            if let dict = p as? NSDictionary {
+                // use the NSArray list here
+                self.picks?.append(Pick(away: dict["away"] as! String, date: dict["date"] as! String, home: dict["home"] as! String, pick: dict["pick"] as! String, result: dict["result"] as! Bool))
+            }
+
         }
         DispatchQueue.main.async {
             self.inProgressTable.reloadData()

@@ -100,7 +100,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell")!;
-        cell.textLabel?.text = gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name + " vs. " + gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name
+        cell.textLabel?.text = gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name + " @ " + gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name
 //        cell.textLabel?.text = eventList[indexPath.row].teams[0].name + " vs. " + eventList[indexPath.row].teams[1].name;
         return cell;
     }
@@ -142,28 +142,27 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(alert, animated: true)
     }
     
-    func readStreaks(completion: @escaping ([String: AnyObject], Pick) -> Void, ref: DatabaseReference, pick: Pick) {
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! [String: AnyObject]
+    func readStreaks(completion: @escaping (Int, Pick) -> Void, ref: DatabaseReference, pick: Pick) {
+        ref.child("currentStreak").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! Int
             completion(value, pick)
         })
     }
     
-    func streakCompletionHandler(data: [String: AnyObject], pick: Pick) {
-        let curr: Int = data["currentStreak"] as! Int
-        let record: Int = data["currentStreak"] as! Int
+    func currCompletionHandler(data: Int, pick: Pick) {
+        let curr: Int = data as! Int
     }
     
     
-    func readPicksfromDatabase(completion: @escaping ([String: AnyObject]) -> Void, ref: DatabaseReference) {
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! [String: AnyObject]
+    func readPicksfromDatabase(completion: @escaping (NSArray) -> Void, ref: DatabaseReference) {
+        ref.child("picks").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! NSArray
             completion(value)
         })
     }
 
-    func readCompletionHandler(data: [String: AnyObject]) {
-        let loaded: NSArray = data["picks"] as! NSArray
+    func readCompletionHandler(data:NSArray) {
+        let loaded: NSArray = data as! NSArray
         for p in loaded {
             let dict = p as! Dictionary<String,Any>
             //if let dict = p as? NSDictionary {
@@ -178,7 +177,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let loadablePicks = loadablePicks,
             let list = loadablePicks as? NSArray {
             //self.ref.setValue(["picks": nil])
-            self.ref.setValue(["picks": list])
+            self.ref.child("picks").setValue(["picks": list])
         }
     }
     
