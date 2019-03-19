@@ -54,5 +54,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func buttonLeaderboard(_ sender: UIButton) {
         self.performSegue(withIdentifier: "EventToLeaderboard", sender: self)
     }
+
+    @IBAction func buttonInProgress(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "EventToInProgress", sender: self)
+    }
+    
     
 }
