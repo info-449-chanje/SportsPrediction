@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Auth.auth().currentUser
         // Do any additional setup after loading the view.
     }
     
@@ -22,7 +23,15 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func buttonLeaderboard(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "ProfileToGraph", sender: self)
+        self.performSegue(withIdentifier: "ProfileToLeaderboard", sender: self)
     }
     
+    @IBAction func buttonSignOut(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            self.performSegue(withIdentifier: "UserSignOut", sender: self)
+        } catch {
+            print("Error while signing out")
+        }
+    }
 }

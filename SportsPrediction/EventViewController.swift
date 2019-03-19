@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+struct Pick {
+    let pick: String
+    var event: Event
+}
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var eventList: [Event] = [];
+    var picks: [Pick] = [];
     
     @IBOutlet weak var EventTableView: UITableView!
     
@@ -18,11 +25,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         EventTableView.dataSource = self;
         EventTableView.delegate = self;
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+      
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,10 +41,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = UIAlertController(title: "Pick a Team!", message: "Choose Between the Two Teams Below..", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: eventList[indexPath.row].teams[0].name , style: .default, handler:  { action in
-            
+            let pick = Pick(pick: self.eventList[indexPath.row].teams[0].name, event: self.eventList[indexPath.row])
+            self.picks.append(pick);
         }));
         alert.addAction(UIAlertAction(title: eventList[indexPath.row].teams[1].name, style: .default, handler: { action in
-            
+            let pick = Pick(pick: self.eventList[indexPath.row].teams[1].name, event: self.eventList[indexPath.row])
+            self.picks.append(pick);
         }));
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
