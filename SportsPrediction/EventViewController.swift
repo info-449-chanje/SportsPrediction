@@ -145,8 +145,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
             }));
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
         }
-        self.present(alert, animated: true)
     }
     
     func readCurr(completion: @escaping (Any, Pick) -> Void, ref: DatabaseReference, pick: Pick) {
