@@ -247,6 +247,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
       }
     }
   
+    @IBAction func buttonSignOut(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            self.performSegue(withIdentifier: "eventSignOut", sender: self)
+        } catch {
+            print("Error while signing out")
+        }
+    }
+    
  
     
     func fetchJson(_ fetchUrl: String, sportId: String){
