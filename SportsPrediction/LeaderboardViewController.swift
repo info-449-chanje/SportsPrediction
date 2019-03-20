@@ -92,5 +92,14 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    @IBAction func buttonSignout(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            self.performSegue(withIdentifier: "leaderboardSignOut", sender: self)
+        } catch {
+            print("Error while signing out")
+        }
+    }
+    
     
 }

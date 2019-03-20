@@ -222,7 +222,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func buttonProfile(_ sender: UIButton) {
+      if (Auth.auth().currentUser?.email != nil) {
         self.performSegue(withIdentifier: "EventToProfile", sender: self)
+      }
+      else {
+        let alert = UIAlertController(title:"You are not signed in!", message: "Please sign in to access profile data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+      }
     }
     
     @IBAction func buttonLeaderboard(_ sender: UIButton) {
@@ -230,8 +237,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     @IBAction func buttonInProgress(_ sender: UIButton) {
+      if (Auth.auth().currentUser?.email != nil) {
         self.performSegue(withIdentifier: "EventToInProgress", sender: self)
+      }
+      else {
+        let alert = UIAlertController(title:"You are not signed in!", message: "Please sign in to access in progress data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+      }
     }
+  
+ 
     
     func fetchJson(_ fetchUrl: String, sportId: String){
         let string = "\(fetchUrl)include=scores+or+teams+or+all_periods&sport-id=\(sportId)"

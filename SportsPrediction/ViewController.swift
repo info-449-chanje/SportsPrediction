@@ -105,12 +105,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
       }
 
   }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "LogIn") {
-             let eventViewController = segue.destination as! EventViewController
-        }
-    }
 
   @IBAction func buttonSignUp(_ sender: UIButton) {
       self.performSegue(withIdentifier: "SignUp", sender: self)
