@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         self.myarray.append("Wins: " + self.chop(s: "\(attrObject?["wins"])"))
         self.myarray.append("Losses: " + self.chop(s: "\(attrObject?["losses"])"))
         self.myarray.append("Current Streak: " + self.chop(s: "\(attrObject?["currentStreak"])"))
-        self.myarray.append("Record Streak: " + self.chop(s: "\(attrObject?["recordStreak"])"))
+        self.myarray.append("Best Streak: " + self.chop(s: "\(attrObject?["recordStreak"])"))
         
 //        self.addToArray(th: "\(attrObject?["wins"])")
 //        self.addToArray(th: "\(attrObject?["losses"])")
@@ -107,6 +107,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath)
       cell.textLabel?.text = myarray[indexPath.item]
+      cell.textLabel?.textColor = UIColor.white
+      cell.textLabel?.font = UIFont.boldSystemFont(ofSize:24)
       return cell
     }
   
