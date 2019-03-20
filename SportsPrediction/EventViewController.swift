@@ -164,6 +164,22 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             curr = 0
         }
         self.ref.child("currentStreak").setValue(curr)
+        self.readRecord(completion: self.recordCompletionHandler, ref: self.ref, curr: curr)
+    }
+    
+    func readRecord(completion: @escaping (Any, Int) -> Void, ref: DatabaseReference, curr: Int) {
+        ref.child("recordStreak").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value
+            completion(value, curr)
+        })
+    }
+    
+    func recordCompletionHandler(data: Any, curr: Int) {
+        var rec: Int = data as! Int
+        if(curr > rec){
+            rec = curr
+        }
+        self.ref.child("recordStreak").setValue(rec)
     }
     
     
