@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     let email = Auth.auth().currentUser?.email!
     var emailBeforePeriod = email?.split(separator: "@")
     let name = String((emailBeforePeriod?[0])!)
-    print(name)
+//    print(name)
     
     ref = Database.database().reference().child("users").child(name) //child("sam")
 //    ref.observe
@@ -74,16 +74,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 //        let wn3 = "WINS: " + self.chop(s: wn2)
 //        self.myarray.append(wn3)
         self.ProfileTableView.reloadData()
-//          //creating artist object with model and fetched values
-//          let artist = ArtistModel(id: artistId as! String?, name: artistName as! String?, genre: artistGenre as! String?)
-//
-//          //appending it to list
-//          self.artistList.append(artist)
-          
-//        }
         
-        //reloading the tableview
-//        self.tableViewArtists.reloadData()
       }
     })
     
@@ -126,23 +117,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
   func getUserData() {
     
-    
-    
-    let userID = Auth.auth().currentUser?.uid
-    ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-      // Get user value
-      let value = snapshot.value as? NSDictionary
-      let wins = value?["wins"] as? String ?? ""
-      print("wins \(wins)")
-//      let user = User(username: username)
-      
-      // ...
-    }) { (error) in
-      print(error.localizedDescription)
-    }
-    
-    
-    
+
     
     let user = Auth.auth().currentUser
     if let user = user {
@@ -159,9 +134,9 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
       }
 //      let name = email?.split(separator: "@")
       // ...
-      print("uid: \(uid)")
-      print("email: \(String(describing: email))")
-      print(email)
+//      print("uid: \(uid)")
+//      print("email: \(String(describing: email))")
+//      print(email)
     }
     
   }
