@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -63,19 +64,14 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             combinedUserAndStreak[element] = streaks[index]
         }
         let sortedDict = combinedUserAndStreak.sorted(by: { $0.value > $1.value})
-        combinedUserAndStreak.removeAll()
-        var j = 0
-        while j < sortedDict.count {
-            combinedUserAndStreak[sortedDict[j].key] = sortedDict[j].value
-            j = j + 1
-        }
         users.removeAll()
         streaks.removeAll()
-        for (key, value) in combinedUserAndStreak {
-            users.append(key)
-            streaks.append(value)
+        var j = 0
+        while j < sortedDict.count {
+            users.append(sortedDict[j].key)
+            streaks.append(sortedDict[j].value)
+            j = j + 1
         }
-        print(users, streaks)
         DispatchQueue.main.async {
             self.leaderBoard.reloadData()
         }
@@ -84,8 +80,16 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.performSegue(withIdentifier: "LeaderboardToEvent", sender: self)
     }
     
+    
     @IBAction func buttonProfile(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "LeaderboardToProfile", sender: self)
+        if (Auth.auth().currentUser?.email != nil) {
+            self.performSegue(withIdentifier: "LeaderboardToProfile", sender: self)
+        }
+        else {
+            let alert = UIAlertController(title:"You are not signed in!", message: "Please sign in to access profile data", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     
