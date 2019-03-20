@@ -42,20 +42,16 @@ class ProfileGraphViewController: UIViewController {
     let email = Auth.auth().currentUser?.email!
     let emailBeforePeriod = email?.split(separator: "@")
     let name = String((emailBeforePeriod?[0])!)
-    print(name)
+//    print(name)
     
     let ref = Database.database().reference().child("users").child(name) //child("sam")   child(name)
     
     ref.observe(DataEventType.value, with: { (snapshot) in
-      print("checkpoint 1")
+      
       //if the reference have some values
       if snapshot.childrenCount > 0 {
-        print("checkpoint 2")
         
         let attrObject = snapshot.value as? [String: AnyObject]
-        print(Double(self.chop(s: "\(attrObject?["wins"])")) ?? 0.0)
-        
-        print(self.chop(s: "\(attrObject?["wins"])"))
         
         let qWin = Double(self.chop(s: "\(attrObject?["wins"])")) ?? 0.0
         let qLoss = Double(self.chop(s: "\(attrObject?["losses"])")) ?? 0.0
@@ -63,11 +59,8 @@ class ProfileGraphViewController: UIViewController {
         let winEntry = PieChartDataEntry(value: qWin)
         let lossEntry = PieChartDataEntry(value: qLoss)
         
-        print(qWin)
-        print(qLoss)
         
         if (qWin == 0.00 && qLoss == 0.00) {
-          print("made it")
           
           self.graph.chartDescription?.enabled = true
           self.graph.chartDescription?.text = "No picks have been made"
