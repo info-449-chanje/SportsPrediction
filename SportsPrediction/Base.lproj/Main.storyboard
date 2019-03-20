@@ -263,7 +263,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile (results)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oM-3W-mex">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oM-3W-mex">
                                 <rect key="frame" x="50" y="70" width="275" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="CQT-bI-fP2"/>
@@ -686,8 +686,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="WR9-Xr-2H5"/>
         <segue reference="OcK-C4-dIT"/>
-        <segue reference="BgJ-Tn-ChM"/>
+        <segue reference="b65-m7-fvO"/>
         <segue reference="9ud-zA-Cfv"/>
         <segue reference="uDm-GJ-h6f"/>
     </inferredMetricsTieBreakers>
