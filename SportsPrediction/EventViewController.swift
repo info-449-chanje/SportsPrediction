@@ -41,16 +41,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var gameArray: [Games] = []
     let dateFormat = "yyyy-MM-DDHH:mm:sszzz"
     var ref: DatabaseReference!
-    let email = Auth.auth().currentUser?.email!
+    let email = Auth.auth().currentUser?.email
     var name = ""
+    var guest = true
     
     @IBOutlet weak var EventTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let emailBeforePeriod = email?.split(separator: "@")
-        name = String((emailBeforePeriod?[0])!)
-        ref = Database.database().reference().child("users").child(name)
+        if(email != nil){
+            let emailBeforePeriod = email?.split(separator: "@")
+            name = String((emailBeforePeriod?[0])!)
+            ref = Database.database().reference().child("users").child(name)
+            guest = false
+        }
         //writeDataToPicks()
         //self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: ref)
         DispatchQueue.main.async {
@@ -121,26 +125,27 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             home = self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name;
             away = self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name;
         }
-        
-        alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name , style: .default, handler:  { action in
-            if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name){
-                result = true
-            }
-            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, result: result)
-            self.picks?.append(pick)
-            self.readCurr(completion: self.currCompletionHandler, ref: self.ref, pick: pick)
-            self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
-        }));
-        alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
-            if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name){
-                result = true
-            }
-            let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, result: result);
-            self.picks?.append(pick);
-            self.readCurr(completion: self.currCompletionHandler, ref: self.ref, pick: pick)
-            self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
-        }));
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        if(!self.guest){
+            alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name , style: .default, handler:  { action in
+                if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name){
+                    result = true
+                }
+                let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, result: result)
+                self.picks?.append(pick)
+                self.readCurr(completion: self.currCompletionHandler, ref: self.ref, pick: pick)
+                self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
+            }));
+            alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
+                if(self.gameArray[indexPath.section].sectionObjects[indexPath.row].winner.name == self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name){
+                    result = true
+                }
+                let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, result: result);
+                self.picks?.append(pick);
+                self.readCurr(completion: self.currCompletionHandler, ref: self.ref, pick: pick)
+                self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
+            }));
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        }
         self.present(alert, animated: true)
     }
     
