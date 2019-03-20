@@ -47,10 +47,10 @@ class ProfileGraphViewController: UIViewController {
     let ref = Database.database().reference().child("users").child(name) //child("sam")   child(name)
     
     ref.observe(DataEventType.value, with: { (snapshot) in
-      
+      print("checkpoint 1")
       //if the reference have some values
       if snapshot.childrenCount > 0 {
-        
+        print("checkpoint 2")
         
         let attrObject = snapshot.value as? [String: AnyObject]
         print(Double(self.chop(s: "\(attrObject?["wins"])")) ?? 0.0)
@@ -62,6 +62,20 @@ class ProfileGraphViewController: UIViewController {
         
         let winEntry = PieChartDataEntry(value: qWin)
         let lossEntry = PieChartDataEntry(value: qLoss)
+        
+        print(qWin)
+        print(qLoss)
+        
+        if (qWin == 0.00 && qLoss == 0.00) {
+          print("made it")
+          
+          self.graph.chartDescription?.enabled = true
+          self.graph.chartDescription?.text = "No picks have been made"
+          self.graph.chartDescription?.font = UIFont.boldSystemFont(ofSize: 24 )
+          self.graph.chartDescription?.textAlign = NSTextAlignment.right
+          self.graph.chartDescription?.textColor = UIColor.white
+          
+        }
         
         winEntry.label = "Correct picks"
         lossEntry.label = "Incorrect picks"
@@ -78,8 +92,10 @@ class ProfileGraphViewController: UIViewController {
   
   func formatPie() {
     
-    graph.chartDescription?.enabled = false
-    graph.chartDescription?.text = "description would go here"
+    
+//    graph.chartDescription?.enabled = false
+//    graph.chartDescription?.text = "description would go here"
+    
     
     graph.rotationAngle = 0
     graph.rotationEnabled = false
@@ -91,7 +107,7 @@ class ProfileGraphViewController: UIViewController {
     graph.transparentCircleRadiusPercent = 0.4
     
     graph.legend.enabled = true;
-    graph.legend.font = UIFont.boldSystemFont(ofSize: 18)
+    graph.legend.font = UIFont.boldSystemFont(ofSize: 16)
     graph.legend.textColor = UIColor.white
     graph.legend.formSize = CGFloat(20.0)
     
@@ -114,7 +130,7 @@ class ProfileGraphViewController: UIViewController {
     let dataSet = PieChartDataSet(values: qTries, label: "")
     dataSet.valueColors = [white,white]
     dataSet.valueFont = UIFont.boldSystemFont(ofSize: 18)
-    dataSet.colors = [green, orange]
+    dataSet.colors = [orange, green]
     
     //    dataSet.xValuePosition = PieChartDataSet.ValuePosition.outsideSlice
     
