@@ -51,7 +51,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let emailBeforePeriod = email?.split(separator: "@")
         name = String((emailBeforePeriod?[0])!)
         ref = Database.database().reference().child("users").child(name)
-        
+        //writeDataToPicks()
         //self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: ref)
         DispatchQueue.main.async {
             self.fetchJson("https://therundown-therundown-v1.p.rapidapi.com/sports/4/events?", sportId: "4")
@@ -128,6 +128,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[0].name, result: result)
             self.picks?.append(pick)
+            self.readCurr(completion: self.currCompletionHandler, ref: self.ref, pick: pick)
             self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
         }));
         alert.addAction(UIAlertAction(title: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, style: .default, handler: { action in
@@ -136,33 +137,49 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             let pick = Pick(away: away, date: self.gameArray[indexPath.section].sectionObjects[indexPath.row].event_date!, home: home, pick: self.gameArray[indexPath.section].sectionObjects[indexPath.row].teams[1].name, result: result);
             self.picks?.append(pick);
+            self.readCurr(completion: self.currCompletionHandler, ref: self.ref, pick: pick)
             self.readPicksfromDatabase(completion: self.readCompletionHandler, ref: self.ref)
         }));
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
-    func readStreaks(completion: @escaping (Int, Pick) -> Void, ref: DatabaseReference, pick: Pick) {
+    func readCurr(completion: @escaping (Any, Pick) -> Void, ref: DatabaseReference, pick: Pick) {
         ref.child("currentStreak").observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! Int
+            let value = snapshot.value
             completion(value, pick)
         })
     }
     
-    func currCompletionHandler(data: Int, pick: Pick) {
-        let curr: Int = data as! Int
+    func currCompletionHandler(data: Any, pick: Pick) {
+        var curr: Int = data as! Int
+        if(pick.result){
+            curr = curr + 1
+        } else {
+            curr = 0
+        }
+        self.ref.child("currentStreak").setValue(curr)
     }
     
     
     func readPicksfromDatabase(completion: @escaping (NSArray) -> Void, ref: DatabaseReference) {
         ref.child("picks").observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! NSArray
-            completion(value)
+            let value = snapshot.value
+            if let obj = value as? NSArray {
+                completion(obj)
+            } else {
+                self.writeDataToPicks()
+                ref.child("picks").observeSingleEvent(of: .value, with: { (snapshot) in
+                    let val = snapshot.value as! NSArray
+                    completion(val)
+                })
+            }
         })
     }
 
     func readCompletionHandler(data:NSArray) {
         let loaded: NSArray = data as! NSArray
+        var loadablePicks: [NSDictionary]? = []
         for p in loaded {
             let dict = p as! Dictionary<String,Any>
             //if let dict = p as? NSDictionary {
@@ -170,27 +187,26 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.picks?.append(Pick(away: dict["away"] as! String, date: dict["date"] as! String, home: dict["home"] as! String, pick: dict["pick"] as! String, result: dict["result"] as! Bool))
             //}
         }
-        var loadablePicks: [NSDictionary]? = []
         for p in picks! {
             loadablePicks?.append(p.nsDictionary)
         }
         if let loadablePicks = loadablePicks,
             let list = loadablePicks as? NSArray {
-            //self.ref.setValue(["picks": nil])
-            self.ref.child("picks").setValue(["picks": list])
+            self.ref.child("picks").setValue( nil)
+            self.ref.child("picks").setValue(list)
         }
     }
     
     
     func writeDataToPicks() {
         var loadablePicks: [NSDictionary]? = []
-        for p in picks! {
-            loadablePicks?.append(p.nsDictionary)
-        }
+//        for p in picks! {
+//            loadablePicks?.append(p.nsDictionary)
+//        }
         if let loadablePicks = loadablePicks,
             let list = loadablePicks as? NSArray {
             //self.ref.setValue(["picks": nil])
-            self.ref.setValue(["picks": list])
+            self.ref.child("picks").setValue(list)
         }
 //        if let p = p,
 //            list = p as? NSArray {

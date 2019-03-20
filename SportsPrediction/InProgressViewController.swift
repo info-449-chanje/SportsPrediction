@@ -32,9 +32,9 @@ class InProgressViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
     
-    func readPicksfromDatabase(completion: @escaping (NSDictionary) -> Void, ref: DatabaseReference) {
+    func readPicksfromDatabase(completion: @escaping (NSArray) -> Void, ref: DatabaseReference) {
         ref.child("picks").observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! NSDictionary
+            let value = snapshot.value as! NSArray
             completion(value)
         })
     }
@@ -67,9 +67,8 @@ class InProgressViewController: UIViewController, UITableViewDelegate, UITableVi
         return(dateFormatter.date(from: str)!)
     }
     
-    func readCompletionHandler(data: NSDictionary) {
-        let loaded: NSArray = data["picks"] as! NSArray
-        print(loaded)
+    func readCompletionHandler(data: NSArray) {
+        let loaded: NSArray = data as! NSArray
         for p in loaded {
             let dict = p as! Dictionary<String,Any>
             if let dict = p as? NSDictionary {
