@@ -173,10 +173,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let obj = value as? NSArray {
                 completion(obj)
             } else {
-                self.writeDataToPicks()
+                //self.writeDataToPicks()
                 ref.child("picks").observeSingleEvent(of: .value, with: { (snapshot) in
-                    let val = snapshot.value as! NSArray
-                    completion(val)
+                    completion(NSArray())
                 })
             }
         })
