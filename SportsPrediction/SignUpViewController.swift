@@ -30,7 +30,7 @@ class SignUpViewController: UIViewController {
                     var user = String(emailBeforePeriod[0])
                     user = user.lowercased()
                     let ref = Database.database().reference()
-                    ref.child("users").child(user).setValue(["currentStreak": 0, "recordStreak": 0, "wins": 0, "losses": 0])
+                    ref.child("users").child(user).setValue(["currentStreak": 0, "recordStreak": 0, "wins": 0, "losses": 0, "picks": 0])
                     self.performSegue(withIdentifier: "SignUpToSignIn", sender: self)
                 }
                 else {

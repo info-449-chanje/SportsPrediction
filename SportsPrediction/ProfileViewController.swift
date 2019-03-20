@@ -181,7 +181,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func buttonSignOut(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
-            self.performSegue(withIdentifier: "UserSignOut", sender: self)
+            self.performSegue(withIdentifier: "profileSignOut", sender: self)
         } catch {
             print("Error while signing out")
         }
